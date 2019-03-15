@@ -1,7 +1,12 @@
-import java.lang.*;
+/**Array Deque 
+always leave the nextfirst and nextlast to be empty
+*/
 
-public class ArrayDeque<Item> {
-	private Item[] items;
+public class ArrayDeque<T> {
+	/**
+	 * Declare Variables
+	 */
+	private T[] items;
 	private int size;
 	private double usageRatio;
 	private int nextfirst;
@@ -11,22 +16,23 @@ public class ArrayDeque<Item> {
 
 	// create an empty list, pick a random start point
 	public ArrayDeque() {
-		items = (Item[]) new Object[8];
+		items = (T[]) new Object[8];
 		size = 0;
 		usageRatio = (double) size / (double) items.length;
 		nextfirst = 3;
 		nextlast = 4;
 	}
 
-		// create a deep copy of the other
+	// create a deep copy of the other
 	public ArrayDeque(ArrayDeque other) {
-		items = (Item[]) new Object[other.size() + 2];
+		items = (T[]) new Object[other.size() + 2];
 		nextfirst = 0;
 		nextlast = 1;
-		for (int i = 0; i < size; i++) {
-			addLast((Item) other.get(i));
+		size = 0;
+		for (int i = 0; i < other.size; i++) {
+			addLast((T) other.get(i));
 		}
-        usageRatio = (double) size / (double) items.length;
+		usageRatio = (double) size / (double) items.length;
 	}
 
 	private void resize() {
@@ -34,38 +40,41 @@ public class ArrayDeque<Item> {
 			expand(items.length * factor);
 		}
 
-		if (usageRatio < leastUsage && items.length > 8){
+		if (usageRatio < leastUsage && items.length > 8) {
 			reduce(items.length / factor);
 		}
 	}
+
 	// expand the size
 	private void expand(int capacity) {
-		Item[] a = (Item[]) new Object[capacity];
+		T[] a = (T[]) new Object[capacity];
 		if (nextfirst < nextlast) {
-			System.arraycopy(items, 0, a, 0, size);
+			System.arraycopy(items, 1, a, 1, size);
 		} else {
 			System.arraycopy(items, 0, a, 0, nextlast);
-			System.arraycopy(items, nextfirst + 1, a, capacity - (items.length - 1 - nextfirst), (items.length - 1 - nextfirst));
+			System.arraycopy(items, nextfirst + 1, a, capacity - (items.length - 1 - nextfirst),
+					(items.length - 1 - nextfirst));
 			nextfirst = capacity - (items.length - 1 - nextfirst) - 1;
 		}
 		items = a;
-        usageRatio = (double) size / (double) items.length;
-	}	
+		usageRatio = (double) size / (double) items.length;
+	}
 
 	// reduce the size
 	private void reduce(int capacity) {
-		Item[] a = (Item[]) new Object[capacity];
+		T[] a = (T[]) new Object[capacity];
 		if (nextfirst < nextlast) {
 			System.arraycopy(items, nextfirst + 1, a, 1, nextlast - nextfirst - 1);
 			nextlast = nextlast - nextfirst;
 			nextfirst = 0;
 		} else {
 			System.arraycopy(items, 0, a, 0, nextlast);
-			System.arraycopy(items, nextfirst + 1, a, capacity - (items.length - nextfirst - 1), items.length - nextfirst -1);
+			System.arraycopy(items, nextfirst + 1, a, capacity - (items.length - nextfirst - 1),
+					items.length - nextfirst - 1);
 			nextfirst = capacity - (items.length - 1 - nextfirst) - 1;
 		}
 		items = a;
-        usageRatio = (double) size / (double) items.length;
+		usageRatio = (double) size / (double) items.length;
 	}
 
 	// helper funtion to round the nextfirst or nextlast
@@ -85,27 +94,27 @@ public class ArrayDeque<Item> {
 		}
 	}
 
-	public void addFirst(Item item) {
+	public void addFirst(T item) {
 		resize();
 		items[nextfirst] = item;
 		nextfirst = minusOne(nextfirst);
 		size = size + 1;
-        usageRatio = (double) size / (double) items.length;
+		usageRatio = (double) size / (double) items.length;
 	}
 
-	public void addLast(Item item) {
+	public void addLast(T item) {
 		resize();
 		items[nextlast] = item;
 		nextlast = plusOne(nextlast);
 		size = size + 1;
-        usageRatio = (double) size / (double) items.length;
+		usageRatio = (double) size / (double) items.length;
 	}
 
 	public boolean isEmpty() {
 		return size == 0;
 	}
 
-	public int size(){
+	public int size() {
 		return size;
 	}
 
@@ -113,32 +122,38 @@ public class ArrayDeque<Item> {
 		int cur = plusOne(nextfirst);
 		while (items[cur] != null && cur != nextlast) {
 			System.out.print(items[cur]);
-            cur = plusOne(cur);
+			cur = plusOne(cur);
 		}
 		System.out.println(' ');
 	}
 
-	public Item removeFirst() {
+	public T removeFirst() {
+		if (size == 0) {
+			return null;
+		}
 		resize();
 		nextfirst = plusOne(nextfirst);
-		Item itemRomove = items[nextfirst];
+		T itemRomove = items[nextfirst];
 		items[nextfirst] = null;
 		size = size - 1;
-        usageRatio = (double) size / (double) items.length;
+		usageRatio = (double) size / (double) items.length;
 		return itemRomove;
 	}
 
-	public Item removeLast() {
+	public T removeLast() {
+		if (size == 0) {
+			return null;
+		}
 		resize();
 		nextlast = minusOne(nextlast);
-		Item itemRomove = items[nextlast];
+		T itemRomove = items[nextlast];
 		items[nextlast] = null;
 		size = size - 1;
-        usageRatio = (double) size / (double) items.length;
+		usageRatio = (double) size / (double) items.length;
 		return itemRomove;
 	}
 
-	public Item get(int index) {
+	public T get(int index) {
 		if (size == 0 || index > size - 1) {
 			return null;
 		} else {
@@ -150,16 +165,26 @@ public class ArrayDeque<Item> {
 		}
 	}
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> aq = new ArrayDeque<Integer>();
-        for (int i = 0; i < 100; i++) {
-            aq.addLast(i);
-        }
-        aq.printDeque();
-        for (int i = 0; i < 98; i++) {
-            aq.removeFirst();
-        }
-        aq.printDeque();
-        System.out.println(aq.get(0));
-    }
+	public static void main(String[] args) {
+		ArrayDeque a = new ArrayDeque();
+		a.addLast(0);
+		a.addFirst(1);
+		a.get(1);
+		a.addLast(3);
+		a.get(2);
+		a.get(2);
+		a.get(1);
+		a.addFirst(7);
+		a.addLast(8);
+		System.out.println(a.get(3));
+		a.addFirst(10);
+		a.addFirst(11);
+		a.get(4);
+		a.addFirst(13);
+		a.removeLast();
+		a.printDeque();
+		ArrayDeque b = new ArrayDeque(a);
+		b.removeFirst();
+		b.printDeque();
+	}
 }

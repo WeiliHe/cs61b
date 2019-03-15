@@ -1,12 +1,12 @@
 /* LinkedListDeque Class*/
-public class LinkedListDeque<LochNess> {
+public class LinkedListDeque<T> {
 
 	private class StuffNode {
-		private LochNess item;
+		private T item;
 		private StuffNode prev;
 		private StuffNode next;
 
-		private StuffNode(LochNess i, StuffNode p, StuffNode n) {
+		private StuffNode(T i, StuffNode p, StuffNode n) {
 			item = i;
 			prev = p;
 			next = n;
@@ -25,7 +25,7 @@ public class LinkedListDeque<LochNess> {
 	}
 
 	// create list
-	public LinkedListDeque(LochNess x) {
+	public LinkedListDeque(T x) {
 		sentinel = new StuffNode(null, null, null);
 		sentinel.next = new StuffNode(x, sentinel, sentinel);
 		sentinel.prev = sentinel.next;
@@ -37,20 +37,20 @@ public class LinkedListDeque<LochNess> {
 		sentinel.prev = sentinel;
 		sentinel.next = sentinel;
 		size = 0;
-		// adding the Lochness before the other.get() is for casting the other to Lochness Type
+		// adding the T before the other.get() is for casting the other to T Type
 		for (int i = 0; i < other.size; i++) {
-			addLast((LochNess) other.get(i));
+			addLast((T) other.get(i));
 		}
 	}
 
-	public void addFirst(LochNess x) {
+	public void addFirst(T x) {
 		sentinel.next = new StuffNode(x, sentinel, sentinel.next);
 		sentinel.next.next.prev = sentinel.next;
 		size = size + 1;
 
 	}
 
-	public void addLast(LochNess x) {
+	public void addLast(T x) {
 		sentinel.prev.next = new StuffNode(x, sentinel.prev, sentinel);
 		sentinel.prev = sentinel.prev.next;
 		size = size + 1;
@@ -74,31 +74,31 @@ public class LinkedListDeque<LochNess> {
 	}
 
 	// is if statement necessary?
-	public LochNess removeFirst() {
+	public T removeFirst() {
 		if (size == 0) {
 			return null;
 		} else {
 			StuffNode removeNode = sentinel.next;
 			sentinel.next = sentinel.next.next;
-			sentinel.next.next.prev = sentinel;
+			sentinel.next.prev = sentinel;
 			size = size - 1;
 			return removeNode.item;
 		}
 	}
 
-	public LochNess removeLast() {
+	public T removeLast() {
 		if (size == 0) {
 			return null;
 		} else {
 			StuffNode removeNode = sentinel.prev;
-			sentinel.prev.prev.next = sentinel;
 			sentinel.prev = sentinel.prev.prev;
+			sentinel.prev.next = sentinel;
 			size = size - 1;
 			return removeNode.item;
 		}
 	}
 
-	public LochNess get(int index) {
+	public T get(int index) {
 		if (size == 0 || index > size) {
 			return null;
 		} else {
@@ -111,7 +111,7 @@ public class LinkedListDeque<LochNess> {
 		}
 	}
 
-	private LochNess getRecursiveHelper(int index, StuffNode currentNode) {
+	private T getRecursiveHelper(int index, StuffNode currentNode) {
 		if (index == 0) {
 			return currentNode.item;
 		} else {
@@ -119,11 +119,27 @@ public class LinkedListDeque<LochNess> {
 		}
 	}
 
-	public LochNess getRecursive(int index) {
+	public T getRecursive(int index) {
 		if (size == 0 || index > size) {
 			return null;
 		} else {
 			return getRecursiveHelper(index, sentinel.next);
 		}
+	}
+
+	public static void main(String[] args){
+		LinkedListDeque a = new LinkedListDeque();
+		a.addLast(0);
+		a.addLast(1);
+		a.addFirst(2);
+		System.out.print(a.getRecursive(0));
+		a.removeFirst();
+		a.removeFirst();
+		a.addLast(6);
+		a.addFirst(7);
+		a.removeLast();
+		a.removeFirst();
+		a.addFirst(10);
+		a.getRecursive(1);
 	}
 }
