@@ -82,4 +82,5 @@ public class Clorus extends Creature {
 			return new Action(Action.ActionType.MOVE, emptyD);
 		}
 	}
+
 }

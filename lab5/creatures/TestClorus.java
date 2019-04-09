@@ -13,7 +13,7 @@ import huglife.Empty;
  *  @author Felix
  */
 
-public class TestClorus{
+public class TestClorus {
     @Test
     public void testBasics() {
         Clorus c = new Clorus(2);
