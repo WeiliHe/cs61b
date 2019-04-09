@@ -2,9 +2,6 @@ package es.datastructur.synthesizer;
 import java.util.Iterator;
 import java.util.Objects;
 
-//TODO: Make sure to that this class and all of its methods are public
-//TODO: Make sure to add the override tag for all overridden methods
-//TODO: Make sure to make this class implement BoundedQueue<T>
 
 public class ArrayRingBuffer<T> implements BoundedQueue<T> {
     /* Index for the next dequeue or peek. */
@@ -66,8 +63,6 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
             fillCount += 1;
             last = plusOne(last);
         }
-        // TODO: Enqueue the item. Don't forget to increase fillCount and update
-        //       last.
         return;
     }
 
@@ -86,8 +81,7 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
             first = plusOne(first);
             return dequeueNum;
         }
-        // TODO: Dequeue the first item. Don't forget to decrease fillCount and
-        //       update first.
+
     }
 
     /**
@@ -101,13 +95,11 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
         } else {
             return rb[first];
         }
-        // TODO: Return the first item. None of your instance variables should
-        //       change.
     }
 
     private class ArrayRingBufferIterator implements Iterator<T> {
         private int pos;
-        public ArrayRingBufferIterator() {
+        ArrayRingBufferIterator() {
             pos = 0;
         }
         @Override
@@ -161,7 +153,6 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
         }
         return true;
     }
-    // TODO: When you get to part 4, implement the needed code to support
-    //       iteration and equals.
+
 }
-    // TODO: Remove all comments that say TODO when you're done.
+

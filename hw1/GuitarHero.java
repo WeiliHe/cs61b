@@ -3,12 +3,12 @@ import es.datastructur.synthesizer.GuitarString;
 import java.lang.Math;
 
 public class GuitarHero {
-    private static final String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
+    private static final String KEYBOARD = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
     private static final double CONCERT_BASE = 440.0;
 
     public static void main(String[] args) {
         /* create two guitar strings, for concert A and C */
-        GuitarString concert[] = new GuitarString[keyboard.length()];
+        GuitarString concert[] = new GuitarString[KEYBOARD.length()];
         for (int i = 0; i < concert.length; i++) {
             concert[i] = new GuitarString(CONCERT_BASE * Math.pow(2, (i - 24) / 12));
         }
@@ -18,9 +18,9 @@ public class GuitarHero {
             /* check if the user has typed a key; if so, process it */
             if (StdDraw.hasNextKeyTyped()) {
                 char key = StdDraw.nextKeyTyped();
-                int index = keyboard.indexOf(key);
+                int index = KEYBOARD.indexOf(key);
                 if (index != -1) {
-                    concert[keyboard.indexOf(key)].pluck();
+                    concert[KEYBOARD.indexOf(key)].pluck();
                 }
             }
 
