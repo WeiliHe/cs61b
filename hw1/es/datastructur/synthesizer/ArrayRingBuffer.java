@@ -1,6 +1,7 @@
 package es.datastructur.synthesizer;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.ArrayList;
 
 
 public class ArrayRingBuffer<T> implements BoundedQueue<T> {
@@ -99,17 +100,20 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
 
     private class ArrayRingBufferIterator implements Iterator<T> {
         private int pos;
+        private int count;
         ArrayRingBufferIterator() {
-            pos = 0;
+            count = 0;
+            pos = first;
         }
         @Override
         public boolean hasNext() {
-            return rb[last] != null;
+            return count < fillCount();
         }
 
         @Override 
         public T next() {
             T returnItem = rb[pos];
+            count += 1;
             if (pos == cap - 1) {
                 pos = 0;
             } else {
@@ -140,14 +144,17 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
         if (this.fillCount() != other.fillCount()) {
             return false;
         }
+
+        ArrayList itemThis = new ArrayList();
+        ArrayList itemOther = new ArrayList();
         for (T item: this) {
-            boolean isEqual = false;
-            for (T itemO: other) {
-                if (Objects.equals(itemO, item)) {
-                    isEqual = true;
-                }
-            }
-            if (!isEqual) {
+            itemThis.add(item);
+        }
+        for (T item: other) {
+            itemOther.add(item);
+        }
+        for (int i = 0; i < itemThis.size(); i++) {
+            if (!Objects.equals(itemThis, itemOther)) {
                 return false;
             }
         }
