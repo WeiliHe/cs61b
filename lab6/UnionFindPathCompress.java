@@ -62,6 +62,7 @@ public class UnionFindPathCompress {
         }
     }
 	public int find(int vertex) {
+        validate(vertex);
 	    int r = vertex;
 	    ArrayList<Integer> wlkThrVertex = new ArrayList();
 	    while (parentArray[r] >= 0) {

@@ -70,6 +70,7 @@ public class UnionFind {
     /* Returns the root of the set V belongs to. Path-compression is employed
        allowing for fast search-time. */
     public int find(int vertex) {
+        validate(vertex);
         int r = vertex;
         while (parentArray[r] >= 0) {
             r = parentArray[r];
