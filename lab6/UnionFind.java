@@ -18,8 +18,11 @@ public class UnionFind {
 
     /* Throws an exception if v1 is not a valid index. */
     private void validate(int vertex) {
+        if (vertex != (int)vertex) {
+            throw new IllegalArgumentException("v1 is not a valid index");
+        }
         if (vertex < 0 | vertex >= numElemt) {
-            throw new RuntimeException("v1 is not a valid index");
+            throw new IllegalArgumentException("v1 is not a valid index");
         }
     }
 
@@ -32,7 +35,6 @@ public class UnionFind {
     /* Returns the parent of v1. If v1 is the root of a tree, returns the
        negative size of the tree for which v1 is the root. */
     public int parent(int v1) {
-        // TODO
         validate(v1);
         return parentArray[v1];
     }
@@ -55,7 +57,7 @@ public class UnionFind {
         int rootV1 = find(v1);
         int rootV2 = find(v2);
         if (rootV1 != rootV2) {
-            if (sizeOf(v1) >= sizeOf(v2)) {
+            if (sizeOf(v1) > sizeOf(v2)) {
                 parentArray[rootV1] += parentArray[rootV2];
                 parentArray[rootV2] = rootV1;
                 sizeArray[rootV1] += sizeArray[rootV2];
