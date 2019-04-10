@@ -18,7 +18,7 @@ public class UnionFind {
 
     /* Throws an exception if v1 is not a valid index. */
     private void validate(int vertex) {
-        if (vertex < 0 | vertex > numElemt) {
+        if (vertex < 0 | vertex >= numElemt) {
             throw new RuntimeException("v1 is not a valid index");
         }
     }
