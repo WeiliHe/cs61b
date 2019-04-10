@@ -68,7 +68,7 @@ public class UnionFindPathCompress {
 	    	wlkThrVertex.add(r);
 	        r = parentArray[r];
 	    }
-	    for(int v: wlkThrVertex) {
+	    for (int v: wlkThrVertex) {
 	    	parentArray[v] = r;
 	    }
 	    return r;
