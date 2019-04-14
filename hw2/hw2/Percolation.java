@@ -14,6 +14,9 @@ public class Percolation {
     private int netSize;
 
     public Percolation(int N) {
+    	if (N <= 0) {
+    		throw new IllegalArgumentException();
+    	}
         openSites = new WeightedQuickUnionUF(N*N + 2);
         antiBackwash = new WeightedQuickUnionUF(N*N + 1);
         sqNetwork = new int[N][N];
@@ -68,12 +71,13 @@ public class Percolation {
             return;
         }
         if ((row < 0 | row > netSize - 1) | (col < 0 | col > netSize - 1)) {
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
         }
         if (row == 0) {
         	openSites.union(virtualTop, xyTo1D(row, col));
             antiBackwash.union(virtualTop, xyTo1D(row, col));
-        } else if (row == netSize - 1) {
+        } 
+        if (row == netSize - 1) {
         	openSites.union(virtualBottom, xyTo1D(row, col));
         }
 
@@ -89,12 +93,18 @@ public class Percolation {
         }
     }
 
-    public boolean isOpen(int r, int c) {
-        return sqNetwork[r][c] == 1;
+    public boolean isOpen(int row, int col) {
+    	if ((row < 0 | row > netSize - 1) | (col < 0 | col > netSize - 1)) {
+            throw new IndexOutOfBoundsException();
+        }
+        return sqNetwork[row][col] == 1;
     }
 
-    public boolean isFull(int r, int c) {
-        return antiBackwash.connected(xyTo1D(r, c), virtualTop);
+    public boolean isFull(int row, int col) {
+    	if ((row < 0 | row > netSize - 1) | (col < 0 | col > netSize - 1)) {
+            throw new IndexOutOfBoundsException();
+        }
+        return antiBackwash.connected(xyTo1D(row, col), virtualTop);
     }
 
     public int numberOfOpenSites() {
@@ -105,7 +115,7 @@ public class Percolation {
         return openSites.connected(virtualTop, virtualBottom);
     }
     public static void main (String[] args) {
-  //       int N = 20;
-		// Percolation net = new Percolation(N);
+         int N = 1;
+		 Percolation net = new Percolation(N);
     }
 }

@@ -6,7 +6,7 @@ import java.lang.Math;
 import java.lang.*;
 
 public class PercolationStats {
-    private int[] xArray;
+    private double[] xArray;
     private int netSize;
     private int simTimes;
     final static double cfInterv = 1.96;
@@ -14,18 +14,24 @@ public class PercolationStats {
         if (N <= 0 | T <= 0) {
             throw new java.lang.IllegalArgumentException();
         }
+        xArray = new double[T];
         Stopwatch watch = new Stopwatch();
         for (int t = 0; t < T; t++) {
             Percolation net = pf.make(N);
             int x = 0;
-            while (net.percolates() != true) {
+            while (!net.percolates()) {
 //                generate the random row and col
-                int row = StdRandom.uniform(0, N - 1);
-                int col = StdRandom.uniform(0, N - 1);
-                net.open(row, col);
-                x++;
+                int row = StdRandom.uniform(0, N );
+                int col = StdRandom.uniform(0, N);
+                if (!net.isOpen(row, col)){
+                    net.open(row, col);
+                    x++;
+                }
             }
-            xArray[t] = x;
+            System.out.println(x);
+            xArray[t] = (double) x / (N * N);
+//            System.out.println("simulation time");
+//            System.out.println(t);
         }
         System.out.println(watch.elapsedTime());
     }
@@ -42,5 +48,12 @@ public class PercolationStats {
 
     public double confidenceHigh() {
         return mean() + cfInterv * stddev() / Math.sqrt(xArray.length);
+    }
+
+    public static void main(String[] args) {
+        PercolationFactory pf = new PercolationFactory();
+        PercolationStats ps = new PercolationStats(1, 20, pf);
+        System.out.println(ps.mean());
+        System.out.println(ps.stddev());
     }
 }
