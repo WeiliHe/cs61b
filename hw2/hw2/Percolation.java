@@ -1,4 +1,4 @@
- package hw2;
+package hw2;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 import java.lang.*;
@@ -14,23 +14,23 @@ public class Percolation {
     private int netSize;
 
     public Percolation(int N) {
-    	if (N <= 0) {
+        if (N <= 0) {
     		throw new IllegalArgumentException();
     	}
-        openSites = new WeightedQuickUnionUF(N*N + 2);
-        antiBackwash = new WeightedQuickUnionUF(N*N + 1);
+        openSites = new WeightedQuickUnionUF(N * N + 2);
+        antiBackwash = new WeightedQuickUnionUF(N * N + 1);
         sqNetwork = new int[N][N];
         numofOpenSites = 0;
-        virtualTop = N*N;
-        virtualBottom = N*N + 1;
+        virtualTop = N * N;
+        virtualBottom = N * N + 1;
         // initializeUnionSet(N);
         netSize = N;
     }
 
-    private void initializeUnionSet(int N){
+    private void initializeUnionSet(int N) {
     	for (int i = 0; i < N; i++) {
     		openSites.union(xyTo1D(0, i), virtualTop);
-    		openSites.union(xyTo1D(N-1, i), virtualBottom);
+    		openSites.union(xyTo1D(N - 1, i), virtualBottom);
     		antiBackwash.union(xyTo1D(0, i), virtualTop);
     	}
     }
@@ -114,8 +114,8 @@ public class Percolation {
     public boolean percolates() {
         return openSites.connected(virtualTop, virtualBottom);
     }
-    public static void main (String[] args) {
-         int N = 1;
-		 Percolation net = new Percolation(N);
+    public static void main(String[] args) {
+        int N = 1;
+        Percolation net = new Percolation(N);
     }
 }

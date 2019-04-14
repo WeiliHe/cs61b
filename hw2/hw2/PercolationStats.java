@@ -9,7 +9,7 @@ public class PercolationStats {
     private double[] xArray;
     private int netSize;
     private int simTimes;
-    final static double cfInterv = 1.96;
+    static final double CFINTERV = 1.96;
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (N <= 0 | T <= 0) {
             throw new java.lang.IllegalArgumentException();
@@ -21,9 +21,9 @@ public class PercolationStats {
             int x = 0;
             while (!net.percolates()) {
 //                generate the random row and col
-                int row = StdRandom.uniform(0, N );
+                int row = StdRandom.uniform(0, N);
                 int col = StdRandom.uniform(0, N);
-                if (!net.isOpen(row, col)){
+                if (!net.isOpen(row, col)) {
                     net.open(row, col);
                     x++;
                 }
@@ -43,11 +43,11 @@ public class PercolationStats {
     }
 
     public double confidenceLow() {
-        return mean() - cfInterv * stddev() / Math.sqrt(xArray.length);
+        return mean() - CFINTERV * stddev() / Math.sqrt(xArray.length);
     }
 
     public double confidenceHigh() {
-        return mean() + cfInterv * stddev() / Math.sqrt(xArray.length);
+        return mean() + CFINTERV * stddev() / Math.sqrt(xArray.length);
     }
 
     public static void main(String[] args) {
