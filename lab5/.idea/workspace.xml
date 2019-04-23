@@ -2,11 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79dad6b5-4895-4a24-9b65-689566b3e6c1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/creatures/Clorus.java" beforeDir="false" afterPath="$PROJECT_DIR$/creatures/Clorus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/creatures/TestClorus.java" beforeDir="false" afterPath="$PROJECT_DIR$/creatures/TestClorus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/creatures/Clorus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/creatures/Clorus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/creatures/Plip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/creatures/Plip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/creatures/TestClorus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/creatures/TestClorus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/creatures/TestPlip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/creatures/TestPlip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Action$ActionType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Action$ActionType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Action.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Creature.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Creature.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Direction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Direction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Empty.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Empty.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/HugLife.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/HugLife.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/HugLifeAnimator$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/HugLifeAnimator$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/HugLifeAnimator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/HugLifeAnimator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/HugLifeUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/HugLifeUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Impassible.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Impassible.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/In.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/In.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Occupant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Occupant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Out.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Out.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/Position.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/SampleCreature.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/SampleCreature.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/StdDraw.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/StdDraw.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/lab5/huglife/TestHugLife.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/lab5/huglife/TestHugLife.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/creatures/TestClorus.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
-              <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -39,20 +59,52 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/huglife/HugLife.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="132" selection-start-line="132" selection-end-line="132" />
+            <state relative-caret-position="87">
+              <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/huglife/Creature.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            <state relative-caret-position="524">
+              <caret line="62" column="38" lean-forward="true" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/huglife/In.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="401" column="27" selection-start-line="401" selection-start-column="27" selection-end-line="401" selection-end-column="27" />
+              <folding>
+                <element signature="e#11529#11530#0" expanded="true" />
+                <element signature="e#11582#11583#0" expanded="true" />
+                <element signature="e#11794#11795#0" expanded="true" />
+                <element signature="e#11850#11851#0" expanded="true" />
+                <element signature="e#12062#12063#0" expanded="true" />
+                <element signature="e#12118#12119#0" expanded="true" />
+                <element signature="e#12274#12275#0" expanded="true" />
+                <element signature="e#12319#12320#0" expanded="true" />
+                <element signature="e#12487#12488#0" expanded="true" />
+                <element signature="e#12535#12536#0" expanded="true" />
+                <element signature="e#12703#12704#0" expanded="true" />
+                <element signature="e#12751#12752#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/huglife/StdDraw.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="228" column="43" selection-start-line="228" selection-start-column="43" selection-end-line="228" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -144,12 +196,13 @@
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Style Checker" visible="true" weight="0.32921347" />
+      <window_info anchor="bottom" id="Messages" weight="0.32921347" />
+      <window_info anchor="bottom" id="Style Checker" weight="0.32921347" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -171,7 +224,7 @@
     <entry file="file://$PROJECT_DIR$/creatures/TestClorus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -182,17 +235,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/huglife/HugLife.java">
+    <entry file="file://$PROJECT_DIR$/huglife/In.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
+          <caret line="401" column="27" selection-start-line="401" selection-start-column="27" selection-end-line="401" selection-end-column="27" />
+          <folding>
+            <element signature="e#11529#11530#0" expanded="true" />
+            <element signature="e#11582#11583#0" expanded="true" />
+            <element signature="e#11794#11795#0" expanded="true" />
+            <element signature="e#11850#11851#0" expanded="true" />
+            <element signature="e#12062#12063#0" expanded="true" />
+            <element signature="e#12118#12119#0" expanded="true" />
+            <element signature="e#12274#12275#0" expanded="true" />
+            <element signature="e#12319#12320#0" expanded="true" />
+            <element signature="e#12487#12488#0" expanded="true" />
+            <element signature="e#12535#12536#0" expanded="true" />
+            <element signature="e#12703#12704#0" expanded="true" />
+            <element signature="e#12751#12752#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/huglife/StdDraw.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="228" column="43" selection-start-line="228" selection-start-column="43" selection-end-line="228" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/huglife/Creature.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        <state relative-caret-position="524">
+          <caret line="62" column="38" lean-forward="true" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/huglife/HugLife.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
         </state>
       </provider>
     </entry>
