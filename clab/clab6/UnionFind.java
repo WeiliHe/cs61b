@@ -19,10 +19,10 @@ public class UnionFind {
     /* Throws an exception if v1 is not a valid index. */
     private void validate(int vertex) {
         if (vertex != (int)vertex) {
-            throw new IllegalArgumentException("v1 is not a valid index");
+            throw new IllegalArgumentException("vertex is not a valid index");
         }
         if (vertex < 0 | vertex >= numElemt) {
-            throw new IllegalArgumentException("v1 is not a valid index");
+            throw new IllegalArgumentException("vertex is not a valid index");
         }
     }
 
@@ -78,5 +78,13 @@ public class UnionFind {
             r = parentArray[r];
         }
         return r;
+    }
+
+//    deUnion vertex from the set
+    public void deUnion(int vertex) {
+        if (parentArray[vertex] != -1) {
+            parentArray[vertex] = parentArray[vertex]  + 1;
+        }
+        parentArray[vertex] = -1;
     }
 }
