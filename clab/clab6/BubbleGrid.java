@@ -30,22 +30,26 @@ public class BubbleGrid {
         for (int i = 0; i < rowLength; i++) {
             for (int j =0; j < colLength; j++) {
                 if (isStikcy(i, j)) {
-                    return;
+                    continue;
                 }
                 if ((i < 0 | i > rowLength - 1) | (j < 0 | j > colLength - 1)) {
                     throw new IndexOutOfBoundsException();
                 }
                 if ((i == 0) && (grid[i][j] == 1)){
                     stkySet.union(virtualTop, xyTo1D(i, j));
+                    continue;
                 }
-                ArrayList<Integer> stickyNeighbors = getStickyNeighbors(i, j);
-                for (Integer stickyNeighbor: stickyNeighbors) {
-                    if (stickyNeighbor != null) {
-                        stkySet.union(stickyNeighbor, xyTo1D(i, j));
+                if (grid[i][j] == 1) {
+                    ArrayList<Integer> stickyNeighbors = getStickyNeighbors(i, j);
+                    for (Integer stickyNeighbor: stickyNeighbors) {
+                        if (stickyNeighbor != null) {
+                            stkySet.union(stickyNeighbor, xyTo1D(i, j));
+                        }
                     }
                 }
             }
         }
+        return;
     }
 
 //    initialize the top
@@ -115,8 +119,10 @@ public class BubbleGrid {
         for (int i = 0; i < darts.length; i++) {
             int row = darts[i][0];
             int col = darts[i][1];
+            if (grid[row][col] == 1) {
+                numOnes -=1;
+            }
             stkySet.deUnion(xyTo1D(row, col));
-            numOnes -= 1;
             fallNum[i] = numOnes - (stkySet.sizeOf(virtualTop) - 1);
         }
         return fallNum;

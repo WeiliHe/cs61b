@@ -58,11 +58,11 @@ public class UnionFind {
         int rootV2 = find(v2);
         if (rootV1 != rootV2) {
             if (sizeOf(v1) > sizeOf(v2)) {
-                parentArray[rootV1] += parentArray[rootV2];
+                parentArray[rootV1] += parentArray[find(rootV2)];
                 parentArray[rootV2] = rootV1;
                 sizeArray[rootV1] += sizeArray[rootV2];
             } else {
-                parentArray[rootV2] += parentArray[rootV1];
+                parentArray[rootV2] += parentArray[find(rootV1)];
                 parentArray[rootV1] = rootV2;
                 sizeArray[rootV2] += sizeArray[rootV1];
             }
