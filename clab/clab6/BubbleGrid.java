@@ -113,9 +113,17 @@ public class BubbleGrid {
     private void updateStatus(){
         stkySet.reset();
         StickToTop(colLength);
-        numOnes = countNumOnes();
         initialize();
+        for (int i = 0; i < rowLength; i++) {
+            for (int j =0; j < colLength; j++) {
+                if ((grid[i][j] == 1) && (isStikcy(i,j) == false)) {
+                    grid[i][j] = 0;
+                }
+            }
+        }
+        numOnes = countNumOnes();
     }
+
 
 
     /* Returns an array whose i-th element is the number of bubbles that
@@ -132,8 +140,9 @@ public class BubbleGrid {
                 grid[row][col] = 0;
             }
             stkySet.deUnion(xyTo1D(row, col));
+            int preNumOnes = numOnes;
             updateStatus();
-            fallNum[i] = numOnes - (stkySet.sizeOf(virtualTop) - 1);
+            fallNum[i] = preNumOnes - (stkySet.sizeOf(virtualTop) - 1);
         }
         return fallNum;
     }
