@@ -87,4 +87,11 @@ public class UnionFind {
         }
         parentArray[vertex] = -1;
     }
+//    reset the set to initial state
+    public void reset(){
+        for (int i = 0; i < numElemt; i++) {
+            parentArray[i] = -1;
+            sizeArray[i] = 1;
+        }
+    }
 }

@@ -109,6 +109,14 @@ public class BubbleGrid {
         return stkyNeighbors;
     }
 
+//    update when darts, but this is not fast i think
+    private void updateStatus(){
+        stkySet.reset();
+        StickToTop(colLength);
+        numOnes = countNumOnes();
+        initialize();
+    }
+
 
     /* Returns an array whose i-th element is the number of bubbles that
      * fall after the i-th dart is thrown. Assume all elements of darts
@@ -121,8 +129,10 @@ public class BubbleGrid {
             int col = darts[i][1];
             if (grid[row][col] == 1) {
                 numOnes -=1;
+                grid[row][col] = 0;
             }
             stkySet.deUnion(xyTo1D(row, col));
+            updateStatus();
             fallNum[i] = numOnes - (stkySet.sizeOf(virtualTop) - 1);
         }
         return fallNum;
