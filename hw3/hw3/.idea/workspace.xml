@@ -15,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hash/ComplexOomage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="148">
+              <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hash/SimpleOomage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            <state relative-caret-position="46">
+              <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hash/TestComplexOomage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+            <state relative-caret-position="-199">
+              <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1807#1808#0" expanded="true" />
@@ -52,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hash/TestSimpleOomage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="66" column="43" lean-forward="true" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
+            <state relative-caret-position="1447">
+              <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2784#2785#0" expanded="true" />
@@ -123,15 +123,15 @@
       <list>
         <option value="$PROJECT_DIR$/hash/OomageTestUtility.java" />
         <option value="$PROJECT_DIR$/hash/HashTableVisualizer.java" />
-        <option value="$PROJECT_DIR$/hash/ComplexOomage.java" />
         <option value="$PROJECT_DIR$/hash/Hint.java" />
-        <option value="$PROJECT_DIR$/hash/SimpleOomage.java" />
         <option value="$PROJECT_DIR$/hash/TestComplexOomage.java" />
         <option value="$PROJECT_DIR$/hash/TestSimpleOomage.java" />
+        <option value="$PROJECT_DIR$/hash/SimpleOomage.java" />
+        <option value="$PROJECT_DIR$/hash/ComplexOomage.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="773" />
     <option name="y" value="29" />
     <option name="width" value="1146" />
@@ -178,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestSimpleOomage.testHashCodeAndEqualsConsistency">
+  <component name="RunManager" selected="JUnit.TestComplexOomage.testWithDeadlyParams">
     <configuration name="Hint" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hw3.hash.Hint" />
       <module name="hw3" />
@@ -257,10 +257,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestComplexOomage.testWithDeadlyParams" />
+        <item itemvalue="JUnit.TestComplexOomage.testRandomOomagesHashCodeSpread" />
         <item itemvalue="JUnit.TestSimpleOomage.testHashCodeAndEqualsConsistency" />
         <item itemvalue="Application.Hint" />
-        <item itemvalue="JUnit.TestComplexOomage.testRandomOomagesHashCodeSpread" />
-        <item itemvalue="JUnit.TestComplexOomage.testWithDeadlyParams" />
         <item itemvalue="JUnit.TestNiceSpreadOomage" />
       </list>
     </recent_temporary>
@@ -279,12 +279,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestSimpleOomage_testRandomOomagesHashCodeSpread - 2019.04.29 at 17h 48m 15s.xml">
-      <configuration name="TestSimpleOomage.testRandomOomagesHashCodeSpread" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestComplexOomage_testRandomOomagesHashCodeSpread - 2019.04.29 at 17h 55m 31s.xml">
-      <configuration name="TestComplexOomage.testRandomOomagesHashCodeSpread" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestJankyOomage - 2019.04.29 at 17h 57m 03s.xml">
       <configuration name="TestJankyOomage" configurationId="JUnit" />
     </history-entry>
@@ -309,9 +303,15 @@
     <history-entry file="TestSimpleOomage_testHashCodeAndEqualsConsistency - 2019.04.30 at 11h 44m 48s.xml">
       <configuration name="TestSimpleOomage.testHashCodeAndEqualsConsistency" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TestComplexOomage_testRandomOomagesHashCodeSpread - 2019.04.30 at 11h 55m 42s.xml">
+      <configuration name="TestComplexOomage.testRandomOomagesHashCodeSpread" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestComplexOomage_testWithDeadlyParams - 2019.04.30 at 11h 57m 06s.xml">
+      <configuration name="TestComplexOomage.testWithDeadlyParams" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="773" y="29" width="1146" height="963" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
@@ -319,7 +319,7 @@
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16487648" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2863806" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
@@ -328,7 +328,7 @@
       <window_info anchor="bottom" id="Style Checker" weight="0.32924107" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25892857" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27646327" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -344,27 +344,10 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hash/Oomage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hash/TestJankyOomage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hash/HashTableVisualizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -378,23 +361,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hash/Hint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="61" lean-forward="true" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hash/ComplexOomage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.base/java/lang/Math.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -402,20 +368,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hash/SimpleOomage.java">
+    <entry file="file://$PROJECT_DIR$/hash/Oomage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        <state relative-caret-position="115">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hash/Hint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="61" lean-forward="true" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hash/HashTableVisualizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hash/SimpleOomage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hash/TestSimpleOomage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1447">
+          <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2784#2785#0" expanded="true" />
+            <element signature="e#2853#2854#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hash/TestComplexOomage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+        <state relative-caret-position="-199">
+          <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1807#1808#0" expanded="true" />
@@ -423,14 +425,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hash/TestSimpleOomage.java">
+    <entry file="file://$PROJECT_DIR$/hash/ComplexOomage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="66" column="43" lean-forward="true" selection-start-line="66" selection-start-column="43" selection-end-line="66" selection-end-column="43" />
+        <state relative-caret-position="148">
+          <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2784#2785#0" expanded="true" />
-            <element signature="e#2853#2854#0" expanded="true" />
           </folding>
         </state>
       </provider>
