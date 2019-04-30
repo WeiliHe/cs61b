@@ -22,30 +22,32 @@ public class TestComplexOomage {
        has a flawed hashCode. */
     @Test
     public void testRandomOomagesHashCodeSpread() {
-        int N = 50;
         List<Oomage> oomages = new ArrayList<>();
-        for (int i = 1; i < N; i++) {
-            ArrayList<Integer> params = new ArrayList<>();
-            for (int j = 0; j < i; j++) {
-                params.add(254);
-            }
-            ComplexOomage oom = new ComplexOomage(params);
-            oomages.add(oom);
+        int N = 10000;
+
+        for (int i = 0; i < N; i += 1) {
+            oomages.add(ComplexOomage.randomComplexOomage());
         }
+
+        assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
     }
 
-    /* TODO: Create a list of Complex Oomages called deadlyList
+    /* ODO: Create a list of Complex Oomages called deadlyList
      * that shows the flaw in the hashCode function.
      */
 
     @Test
     public void testWithDeadlyParams() {
         List<Oomage> deadlyList = new ArrayList<>();
-        int N = 10000;
-        for (int i = 0; i < N; i += 1) {
-//            oomies.add(SimpleOomage.randomSimpleOomage());
-            deadlyList.add(ComplexOomage.randomComplexOomage());
+        int N = 50;
+        for (int i = 1; i < N; i++) {
+            ArrayList<Integer> params = new ArrayList<>();
+            for (int j = 0; j < i; j++) {
+                params.add(254);
+            }
+            ComplexOomage oom = new ComplexOomage(params);
+            deadlyList.add(oom);
         }
         // Your code here.
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(deadlyList, 10));
