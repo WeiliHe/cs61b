@@ -45,14 +45,14 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
 	}
 
 	public MyHashMap() {
-		this(INITIAL_LOAD_FACTOR , INITIAL_SIZE);
+		this(INITIAL_SIZE, INITIAL_LOAD_FACTOR);
 	}
 
 	public MyHashMap(int initialSize) {
-		this(INITIAL_LOAD_FACTOR, initialSize);
+		this(initialSize, INITIAL_LOAD_FACTOR);
 	}
 
-	public MyHashMap(double loadFactor, int initialSize) {
+	public MyHashMap(int initialSize, double loadFactor) {
 		if (initialSize < 1 || loadFactor <= 0.0) {
 			throw new IllegalArgumentException();
 		}
@@ -100,7 +100,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
 	}
 
 //	helper method for get
-	public Entry<K, V> find(K key, ArrayList<Entry<K, V>> bucket) {
+	private Entry<K, V> find(K key, ArrayList<Entry<K, V>> bucket) {
 		if (bucket == null) {
 			return null;
 		}
