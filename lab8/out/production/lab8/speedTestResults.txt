@@ -1,0 +1,36 @@
+Enter # strings to insert into ULLMap: 3000
+class ULLMap: 0.09 sec
+
+Enter # strings to insert into MyHashMap: 3000
+class MyHashMap: 0.03 sec
+
+Enter # strings to insert into Java's HashMap: 3000
+Java's Built-in HashMap: 0.01 sec
+
+Enter # strings to insert into ULLMap: 6000
+class ULLMap: 0.32 sec
+
+Enter # strings to insert into MyHashMap: 6000
+class MyHashMap: 0.03 sec
+
+Enter # strings to insert into Java's HashMap: 6000
+Java's Built-in HashMap: 0.01 sec
+
+Enter # strings to insert into ULLMap: `12000
+Please enter a positive integer: 12000
+class ULLMap: 1.99 sec
+
+Enter # strings to insert into MyHashMap: 12000
+class MyHashMap: 0.07 sec
+
+Enter # strings to insert into Java's HashMap: 12000
+Java's Built-in HashMap: 0.01 sec
+
+Enter # strings to insert into ULLMap: 100000
+--Stack Overflow -- couldn't add 100000 strings.
+
+Enter # strings to insert into MyHashMap: 100000
+class MyHashMap: 9.56 sec
+
+Enter # strings to insert into Java's HashMap: 100000
+Java's Built-in HashMap: 0.06 sec
