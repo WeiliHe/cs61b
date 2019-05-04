@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
@@ -13,15 +14,16 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
     private final static double EMPTY_FACTOR = 0.25;
     private final static int FACTOR = 2;
     private int first;
-    private int nextLast;
     private int n;  // how many numbers added to the MinPQ
     private HashMap<T, Integer> indexOfKey;  // store the index of the node in array
+    private HashSet<T> keys; //store the key in a HashSet, for faster call in contains
 
     public ArrayHeapMinPQ() {
         items = new ArrayHeapMinPQ.PriorityNode[INITIAL_LENGTH];
         first = 1;
-        nextLast = 1;
+        n = 0;
         indexOfKey = new HashMap<>();
+        keys = new HashSet<>();
     }
 
     /** Note this method does not throw the proper exception,
@@ -53,14 +55,37 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         }
         resize();
         PriorityNode node = new PriorityNode(item, priority);
-        indexOfKey.put(item, nextLast);
-        items[nextLast] = node;
-        nextLast += 1;
+        indexOfKey.put(item, n);
+        keys.add(item);
+        items[n] = node;
+        swim(n);
+        n++;
+    }
+
+    private void swim(int k) {
+        while (k > 1 && greater(k/2, k)) {
+            exch(k, k/2);
+            k = k / 2;
+        }
+    }
+
+    private void exch(int i, int j) {
+        PriorityNode swap = items[i];
+        items[i] = items[j];
+        items[j] = swap;
+    }
+
+    private boolean greater(int i, int j) {
+        if (items[i].compareTo(items[j]) > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean contains(T item) {
-        return items.contains(new PriorityNode(item, 0));
+        return keys.contains(item);
     }
 
     @Override
@@ -68,7 +93,7 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         if (size() == 0) {
             throw new NoSuchElementException("PQ is empty");
         }
-        return Collections.min(items).getItem();
+        return items[1].getItem();
     }
 
     @Override
