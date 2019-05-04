@@ -69,6 +69,21 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         }
     }
 
+    private void sink(int k) {
+        while (2 * k <= n) {
+            int j = 2 * k;
+//            compare to the smaller one of children
+            if (j < n && greater(j, j+1)) {
+                j++;
+            }
+            if (!greater(k, j)) {
+                break;
+            }
+            exch(k, j);
+            k = j;
+        }
+    }
+
     private void exch(int i, int j) {
         PriorityNode swap = items[i];
         items[i] = items[j];
