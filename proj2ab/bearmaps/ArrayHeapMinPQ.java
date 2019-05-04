@@ -13,14 +13,12 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
     private final static int INITIAL_LENGTH = 8;
     private final static double EMPTY_FACTOR = 0.25;
     private final static int FACTOR = 2;
-    private int first;
     private int n;  // how many numbers added to the MinPQ
     private HashMap<T, Integer> indexOfKey;  // store the index of the node in array
     private HashSet<T> keys; //store the key in a HashSet, for faster call in contains
 
     public ArrayHeapMinPQ() {
         items = new ArrayHeapMinPQ.PriorityNode[INITIAL_LENGTH];
-        first = 1;
         n = 0;
         indexOfKey = new HashMap<>();
         keys = new HashSet<>();
@@ -88,6 +86,8 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         PriorityNode swap = items[i];
         items[i] = items[j];
         items[j] = swap;
+        indexOfKey.put(items[i].getItem(), i);
+        indexOfKey.put(items[j].getItem(), j);
     }
 
     private boolean greater(int i, int j) {
@@ -116,8 +116,15 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         if (size() == 0) {
             throw new NoSuchElementException("PQ is empty");
         }
-        int minInd = indOf(getSmallest());
-        return items.remove(minInd).getItem();
+        PriorityNode last = items[n];
+        T smallestItem = items[1].getItem();
+        items[n] = null;
+        items[1] = last;
+        n -= 1;
+        keys.remove(smallestItem);
+        indexOfKey.remove(smallestItem);
+        sink(1);
+        return smallestItem;
     }
 
     @Override
@@ -125,17 +132,14 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         if (contains(item) == false) {
             throw new NoSuchElementException("PQ does not contain " + item);
         }
-        items.get(indOf(item)).setPriority(priority);
+        int index = indexOfKey.get(item);
+        items[index].setPriority(priority);
     }
 
     /* Returns the number of items in the PQ. */
     @Override
     public int size() {
-        return items.size();
-    }
-
-    private int indOf(T elem) {
-        return items.indexOf(new PriorityNode(elem, 0));
+        return n;
     }
 
     private class PriorityNode implements Comparable<PriorityNode> {
