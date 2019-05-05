@@ -53,10 +53,10 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         }
         resize();
         PriorityNode node = new PriorityNode(item, priority);
-        indexOfKey.put(item, n);
+        indexOfKey.put(item, n+1);
         keys.add(item);
-        items[n] = node;
-        swim(n);
+        items[n+1] = node;
+        swim(n+1);
         n++;
     }
 
@@ -134,6 +134,8 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         }
         int index = indexOfKey.get(item);
         items[index].setPriority(priority);
+        swim(index);
+        sink(index);
     }
 
     /* Returns the number of items in the PQ. */
@@ -185,5 +187,26 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         public int hashCode() {
             return item.hashCode();
         }
+    }
+
+
+    private void testBasic() {
+        T[] itemArray = (T[]) new Object[n+1];
+        for (int i = 1; i < n+1; i++) {
+            itemArray[i] = items[i].getItem();
+        }
+        PrintHeapDemo.printFancyHeapDrawing(itemArray);
+    }
+
+    public static void main(String[] args) {
+        ArrayHeapMinPQ<String> stringPQ = new ArrayHeapMinPQ();
+        stringPQ.add("a", 2);
+        stringPQ.add("b", 1);
+        stringPQ.add("c", 5);
+        stringPQ.add("d", 8);
+        stringPQ.add("e", 6);
+        stringPQ.add("f", 4);
+        stringPQ.add("g", 3);
+        stringPQ.testBasic();
     }
 }
