@@ -1,7 +1,5 @@
 package bearmaps;
 import java.util.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.NoSuchElementException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,9 +8,9 @@ import java.util.HashSet;
 public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
     private PriorityNode[] items;
-    private final static int INITIAL_LENGTH = 8;
-    private final static double EMPTY_FACTOR = 0.25;
-    private final static int FACTOR = 2;
+    private static final int INITIAL_LENGTH = 8;
+    private static final double EMPTY_FACTOR = 0.25;
+    private static final int FACTOR = 2;
     private int n;  // how many numbers added to the MinPQ
     private HashMap<T, Integer> indexOfKey;  // store the index of the node in array
     private HashSet<T> keys; //store the key in a HashSet, for faster call in contains
@@ -53,16 +51,16 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         }
         resize();
         PriorityNode node = new PriorityNode(item, priority);
-        indexOfKey.put(item, n+1);
+        indexOfKey.put(item, n + 1);
         keys.add(item);
-        items[n+1] = node;
-        swim(n+1);
+        items[n + 1] = node;
+        swim(n + 1);
         n++;
     }
 
     private void swim(int k) {
-        while (k > 1 && greater(k/2, k)) {
-            exch(k, k/2);
+        while (k > 1 && greater(k / 2, k)) {
+            exch(k, k / 2);
             k = k / 2;
         }
     }
@@ -71,7 +69,7 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         while (2 * k <= n) {
             int j = 2 * k;
 //            compare to the smaller one of children
-            if (j < n && greater(j, j+1)) {
+            if (j < n && greater(j, j + 1)) {
                 j++;
             }
             if (!greater(k, j)) {
@@ -93,9 +91,9 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
     private boolean greater(int i, int j) {
         if (items[i].compareTo(items[j]) > 0) {
             return true;
-        } else {
-            return false;
         }
+        return false;
+
     }
 
     @Override
@@ -129,7 +127,7 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
     @Override
     public void changePriority(T item, double priority) {
-        if (contains(item) == false) {
+        if (!contains(item)) {
             throw new NoSuchElementException("PQ does not contain " + item);
         }
         int index = indexOfKey.get(item);
@@ -191,8 +189,8 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
 
     private void testBasic() {
-        T[] itemArray = (T[]) new Object[n+1];
-        for (int i = 1; i < n+1; i++) {
+        T[] itemArray = (T[]) new Object[n + 1];
+        for (int i = 1; i < n + 1; i++) {
             itemArray[i] = items[i].getItem();
         }
         PrintHeapDemo.printFancyHeapDrawing(itemArray);
