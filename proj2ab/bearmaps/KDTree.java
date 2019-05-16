@@ -2,9 +2,10 @@ package bearmaps;
 import java.util.List;
 import java.util.Comparator;
 
-public class KDTree{
+public class KDTree implements PointSet{
     private Node root;
     private int size;
+    private int dimension = 2;
 
     public KDTree(List<Point> points) {
         for (Point point: points) {
@@ -22,17 +23,26 @@ public class KDTree{
         if (point == null) {
             throw new IllegalArgumentException("calls put() with a null key");
         }
-        if (parent == null) {
-            return new Node(point, )
-        }
 //        decide which dimension used to compare
-        while (parent != null) {
-            int cmp = pointCompare(parent, point);
-
+        int cmp = pointCompare(point, parent);
+        if (cmp < 0) {
+            if (parent.left == null) {
+                parent.left = new Node(point, (parent.dimension + 1) % this.dimension);
+            }
+            else {
+                insert(parent.left, point);
+            }
         }
-        int cmp = pointCompare(parent, point);
-        if (cmp > 0) {
-
+        if (parent.point.equals(point)) {
+            parent.point = point;
+        }
+        else {
+            if (parent.right == null) {
+                parent.right = new Node(point, (parent.dimension + 1) % this.dimension);
+            }
+            else {
+                insert(parent.right, point);
+            }
         }
 
     }
@@ -47,7 +57,7 @@ public class KDTree{
        }
     };
 
-    private int pointCompare (Node parent, Point point) {
+    private int pointCompare (Point point, Node parent) {
         if (parent.dimension == 0) {
             return intComparator.compare((double)parent.point.getX(), (double)point.getX());
         }
@@ -56,15 +66,22 @@ public class KDTree{
         }
     }
 
-    private class Node{
+    @Override
+    public Point nearest(double x, double y) {
+
+    }
+
+    private class Node {
         Point point;
         Node left, right;
         int dimension;
+
         public Node(Point point, int dimension) {
             this.point = point;
             this.dimension = dimension;
         }
     }
 }
+
 
 
