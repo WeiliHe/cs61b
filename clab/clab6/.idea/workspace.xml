@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BubbleGrid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="143" selection-start-line="143" selection-end-line="144" />
+            <state relative-caret-position="282">
+              <caret line="145" column="9" lean-forward="true" selection-start-line="145" selection-start-column="9" selection-end-line="145" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2421#2422#0" expanded="true" />
@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BubbleGridTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="26" />
+            <state relative-caret-position="600">
+              <caret line="31" column="59" lean-forward="true" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -84,8 +84,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/UnionFind.java" />
-        <option value="$PROJECT_DIR$/BubbleGridTest.java" />
         <option value="$PROJECT_DIR$/BubbleGrid.java" />
+        <option value="$PROJECT_DIR$/BubbleGridTest.java" />
       </list>
     </option>
   </component>
@@ -167,40 +167,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BubbleGridTest_testBasic - 2019.04.23 at 22h 59m 10s.xml">
-      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BubbleGridTest_testBasic - 2019.04.23 at 23h 01m 15s.xml">
-      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BubbleGridTest_testBasic - 2019.04.23 at 23h 01m 19s.xml">
-      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 10h 33m 54s.xml">
-      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 10h 38m 34s.xml">
-      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 10h 38m 36s.xml">
-      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 10h 38m 51s.xml">
-      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 10h 39m 02s.xml">
-      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 10h 57m 12s.xml">
       <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
     </history-entry>
     <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 01m 32s.xml">
       <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 01m 33s.xml">
+      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 02m 13s.xml">
+      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 02m 15s.xml">
+      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 02m 31s.xml">
+      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 02m 57s.xml">
+      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 03m 26s.xml">
+      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 03m 38s.xml">
+      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BubbleGridTest_testBasic - 2019.04.24 at 11h 03m 49s.xml">
+      <configuration name="BubbleGridTest.testBasic" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16899142" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -212,7 +211,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32777777" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.43333334" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.43333334" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -262,13 +261,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/UnionFind.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1187">
-          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../../skeleton-sp19/library-sp19/javalib/algs4.jar!/edu/princeton/cs/algs4/WeightedQuickUnionUF.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-215">
@@ -276,22 +268,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BubbleGridTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BubbleGrid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="143" selection-start-line="143" selection-end-line="144" />
+        <state relative-caret-position="282">
+          <caret line="145" column="9" lean-forward="true" selection-start-line="145" selection-start-column="9" selection-end-line="145" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2421#2422#0" expanded="true" />
             <element signature="e#2461#2462#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UnionFind.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1187">
+          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BubbleGridTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="31" column="59" lean-forward="true" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
         </state>
       </provider>
     </entry>
