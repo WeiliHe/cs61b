@@ -5,7 +5,7 @@ import java.util.List;
 
 public class KDTreeTimeTest {
     public static void main(String[] args) {
-        int N = 20000;
+        int N = 40000;
         int scope = 300;
         List<Point> pointList = new ArrayList<Point>();
         for (int i = 0; i < N; i++) {

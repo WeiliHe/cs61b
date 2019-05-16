@@ -61,23 +61,24 @@ public class KDTree implements PointSet{
         }
     }
 
-//    helper function for getting the best possible point from badside
-    private Point getRightRect(Node n, Point goal, Node parent){
+//    helper function for getting the best possible point from badside, just use one dimension comparison
+    private double distanceFromBadside(Node n, Point goal){
         if (n.dimension == 0) {
-            double x = n.point.getX();
-            if (goal)
-            double x = Math.max(goal.getX())
+            return Math.abs(goal.getX() - n.point.getX());
         }
-        double y = n.point.getY();
-        double x = ()
+        else{
+            return Math.abs(goal.getY() - n.point.getY());
+        }
     }
 
-    private Node nearest(Node n, Point goal, Node best) {
+    private Node nearest(Node n, Point goal, Node best, double bestDist) {
         if (n == null) {
             return best;
         }
-        if (n.point.distance(n.point, goal) < best.point.distance(best.point, goal)) {
+        double currDist = n.point.distance(n.point, goal);
+        if (currDist < bestDist) {
             best = n;
+            bestDist = currDist;
         }
         Node goodSide;
         Node badSide;
@@ -88,9 +89,11 @@ public class KDTree implements PointSet{
             goodSide = n.right;
             badSide = n.left;
         }
-        best = nearest(goodSide, goal, best);
+        best = nearest(goodSide, goal, best, bestDist);
         if (badSide != null) {
-            best = nearest(badSide, goal, best);
+            if (distanceFromBadside(badSide, goal) > best.point.distance(best.point, goal)) {
+                best = nearest(badSide, goal, best, bestDist);
+            }
         }
         return best;
     }
@@ -98,7 +101,7 @@ public class KDTree implements PointSet{
     @Override
     public Point nearest(double x, double y) {
         Point goal = new Point(x, y);
-        Node nearestNode = nearest(root, goal, root);
+        Node nearestNode = nearest(root, goal, root, goal.distance(root.point, goal));
         return nearestNode.point;
     }
 
