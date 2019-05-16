@@ -18,8 +18,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bearmaps/KDTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="41" column="9" lean-forward="true" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+            <state relative-caret-position="299">
+              <caret line="67" column="20" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -27,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bearmaps/KDTreeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="53" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="53" />
+            <state relative-caret-position="322">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#249#256#0" expanded="true" />
@@ -49,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bearmaps/KDTreeTimeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="19" column="45" lean-forward="true" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+            <state relative-caret-position="-410">
+              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#290#297#0" expanded="true" />
@@ -62,7 +65,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bearmaps/PrintHeapDemo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1288">
+            <state relative-caret-position="253">
               <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
             </state>
           </provider>
@@ -90,8 +93,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="499" />
-    <option name="y" value="20" />
+    <option name="x" value="539" />
+    <option name="y" value="42" />
     <option name="width" value="1229" />
     <option name="height" value="1007" />
   </component>
@@ -136,7 +139,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.KDTreeTest">
+  <component name="RunManager" selected="Application.KDTreeTimeTest">
     <configuration name="KDTreeTimeTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bearmaps.KDTreeTimeTest" />
       <module name="proj2ab" />
@@ -183,8 +186,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.KDTreeTest" />
         <item itemvalue="Application.KDTreeTimeTest" />
+        <item itemvalue="JUnit.KDTreeTest" />
         <item itemvalue="JUnit.KDTreeTest.testBasic" />
       </list>
     </recent_temporary>
@@ -209,9 +212,27 @@
     <history-entry file="KDTreeTest_testBasic - 2019.05.16 at 15h 31m 03s.xml">
       <configuration name="KDTreeTest.testBasic" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="KDTreeTest - 2019.05.16 at 16h 07m 41s.xml">
+      <configuration name="KDTreeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="KDTreeTest - 2019.05.16 at 16h 09m 13s.xml">
+      <configuration name="KDTreeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="KDTreeTest - 2019.05.16 at 16h 10m 15s.xml">
+      <configuration name="KDTreeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="KDTreeTest - 2019.05.16 at 16h 11m 54s.xml">
+      <configuration name="KDTreeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="KDTreeTest - 2019.05.16 at 16h 12m 08s.xml">
+      <configuration name="KDTreeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="KDTreeTest - 2019.05.16 at 16h 12m 16s.xml">
+      <configuration name="KDTreeTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="499" y="20" width="1229" height="1007" extended-state="0" />
+    <frame x="539" y="42" width="1229" height="1007" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
@@ -224,12 +245,12 @@
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.32911393" />
+      <window_info anchor="bottom" id="Messages" weight="0.32911393" />
       <window_info anchor="bottom" id="Style Checker" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.1990794" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24856156" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.26237053" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -242,6 +263,24 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/bearmaps/KDTree.java</url>
+          <line>24</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/bearmaps/KDTree.java</url>
+          <line>35</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/bearmaps/Point.java">
@@ -258,13 +297,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bearmaps/NaivePointSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bearmaps/TimingTestDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
@@ -274,15 +306,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bearmaps/PrintHeapDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1288">
+        <state relative-caret-position="253">
           <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bearmaps/NaivePointSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bearmaps/KDTreeTimeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="19" column="45" lean-forward="true" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+        <state relative-caret-position="-410">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#290#297#0" expanded="true" />
@@ -292,8 +331,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bearmaps/KDTreeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="53" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="53" />
+        <state relative-caret-position="322">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#249#256#0" expanded="true" />
@@ -303,8 +342,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bearmaps/KDTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="41" column="9" lean-forward="true" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+        <state relative-caret-position="299">
+          <caret line="67" column="20" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

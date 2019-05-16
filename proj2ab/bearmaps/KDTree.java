@@ -1,88 +1,45 @@
 package bearmaps;
+import java.lang.Math;
 import java.util.List;
 import java.util.Comparator;
 
-public class KDTree{
+public class KDTree implements PointSet{
     private Node root;
     private int size;
+    private int dimension =2;
 
     public KDTree(List<Point> points) {
         if (points == null) {
-            throw new IllegalArgumentException("points null")
+            throw new IllegalArgumentException("points null");
         }
         for (Point point: points) {
-            if (root == null) {
-                root = new Node(point, 0);
-            }
-            else {
-
-            }
+            insert(point);
+            size += 1;
         }
     }
-
-    private void inser
 
     private void insert(Point point){
-
-    }
-
-
-
-    private class Node {
-        int partitionDimention;
-        Point point;
-        Node left, right;
-        int size;
-
-        public Node(Point point, int size){
-            this.point = point;
-            this.left = null;
-            this.right = null;
-            this.partitionDimention = 0;
-            this.size = size;
-        }
-
-
-    }
-
-    public KDTree(List<Point> points) {
-        for (Point point: points) {
-            if (root == null) {
-                this.root = new Node(point, 0);
-                size = 1;
-            }
-            else {
-                insert(root, point);
-            }
-        }
-    }
-
-    private void insert(Node parent, Point point) {
         if (point == null) {
             throw new IllegalArgumentException("calls put() with a null key");
         }
-//        decide which dimension used to compare
-        int cmp = pointCompare(point, parent);
-        if (cmp < 0) {
-            if (parent.left == null) {
-                parent.left = new Node(point, (parent.dimension + 1) % this.dimension);
-            }
-            else {
-                insert(parent.left, point);
-            }
+        root = insert(root, point, 0);
+    }
+
+    private Node insert(Node x, Point point, int dim) {
+        if (x == null) {
+            x = new Node(point, dim);
         }
-        if (parent.point.equals(point)) {
-            parent.point = point;
+//        decide which dimension used to compare
+        else if (x.point.equals(point)) {
+            x.point = point;
+        }
+        else if (pointCompare(point, x) < 0) {
+            x.left = insert(x.left, point, (x.dimension + 1) % this.dimension);
         }
         else {
-            if (parent.right == null) {
-                parent.right = new Node(point, (parent.dimension + 1) % this.dimension);
-            }
-            else {
-                insert(parent.right, point);
-            }
+            x.right = insert(x.right, point, (x.dimension + 1) % this.dimension);
         }
-
+        return x;
     }
 
     Comparator<Double> intComparator = (i, j) -> {
@@ -97,16 +54,52 @@ public class KDTree{
 
     private int pointCompare (Point point, Node parent) {
         if (parent.dimension == 0) {
-            return intComparator.compare((double)parent.point.getX(), (double)point.getX());
+            return intComparator.compare((double)point.getX(), (double)parent.point.getX());
         }
         else {
-            return intComparator.compare((double)parent.point.getX(), (double)point.getX());
+            return intComparator.compare((double)point.getY(), (double)parent.point.getY());
         }
+    }
+
+//    helper function for getting the best possible point from badside
+    private Point getRightRect(Node n, Point goal, Node parent){
+        if (n.dimension == 0) {
+            double x = n.point.getX();
+            if (goal)
+            double x = Math.max(goal.getX())
+        }
+        double y = n.point.getY();
+        double x = ()
+    }
+
+    private Node nearest(Node n, Point goal, Node best) {
+        if (n == null) {
+            return best;
+        }
+        if (n.point.distance(n.point, goal) < best.point.distance(best.point, goal)) {
+            best = n;
+        }
+        Node goodSide;
+        Node badSide;
+        if (pointCompare(goal, n) < 0) {
+            goodSide = n.left;
+            badSide = n.right;
+        } else {
+            goodSide = n.right;
+            badSide = n.left;
+        }
+        best = nearest(goodSide, goal, best);
+        if (badSide != null) {
+            best = nearest(badSide, goal, best);
+        }
+        return best;
     }
 
     @Override
     public Point nearest(double x, double y) {
-
+        Point goal = new Point(x, y);
+        Node nearestNode = nearest(root, goal, root);
+        return nearestNode.point;
     }
 
     private class Node {
