@@ -9,12 +9,12 @@ public class NaivePointSet implements PointSet {
 	}
 
 	public Point nearest(double x, double y) {
-		double smallestDistance = 0;
+		double smallestDistance = -1;
 		Point nearestPoint = new Point(x, y);
 		Point m = new Point(x, y);
 		for (Point p : points) {
 			double dis = p.distance(p, m);
-			if (dis < smallestDistance) {
+			if (dis < smallestDistance || smallestDistance < 0) {
 				smallestDistance = dis;
 				nearestPoint = p;
 			}
