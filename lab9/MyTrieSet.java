@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MyTrieSet implements TrieSet61B {
     private Node root;
@@ -22,7 +24,7 @@ public class MyTrieSet implements TrieSet61B {
             throw new IllegalArgumentException("argument to contains() is null");
         }
         Node x = get(root, key, 0);
-        if (x == null) {
+        if (x == null | x.isKey == false) {
             return null;
         }
         return x.val;
@@ -32,7 +34,7 @@ public class MyTrieSet implements TrieSet61B {
         if (x == null) {
             return null;
         }
-        if (d == key.length() && x.isKey) {
+        if (d == key.length()) {
             return x;
         }
         char c = key.charAt(d);
@@ -53,10 +55,61 @@ public class MyTrieSet implements TrieSet61B {
             curr = curr.map.get(c);
         }
         curr.isKey = true;
+        n++;
+    }
+
+    private void prefixHelp(Node x, String prefix, List keys) {
+        if (x == null) {
+            return;
+        }
+        if (x.val != null && x.isKey == true) {
+            keys.add(prefix);
+        }
+        for (char c: x.map.keySet()) {
+            prefixHelp(x.map.get(c), prefix + c, keys);
+        }
+    }
+
+    @Override
+    public List<String> keysWithPrefix(String prefix){
+        if (prefix== null) {
+            throw new IllegalArgumentException("argument to contains() is null");
+        }
+        List<String> keys = new ArrayList();
+        Node x = get(root, prefix, 0);
+        prefixHelp(x, prefix, keys);
+        return keys;
+    }
+
+    private int longestPrefixOf(Node x, String query, int d, int length) {
+        if (x == null) {
+            return length;
+        }
+        if (x.val != null) {
+            return length;
+        }
+        if (d == query.length()) {
+            return length;
+        }
+        char c = query.charAt(d);
+        return longestPrefixOf(x.map.get(c), query, d+1, length);
+    }
+
+    @Override
+    public String longestPrefixOf(String key) {
+        if (key == null) {
+            throw new IllegalArgumentException("argument to longestPrefixOf() is null");
+        }
+        int length = longestPrefixOf(root, key, 0, -1);
+        if (length == -1) {
+            return null;
+        } else {
+            return key.substring(0, length);
+        }
     }
 
     private static class Node {
-        char val;
+        Character val;
         boolean isKey;
         HashMap<Character, Node> map;
         public Node(char val, boolean isKey) {
