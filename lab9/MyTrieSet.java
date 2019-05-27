@@ -4,7 +4,12 @@ import java.util.List;
 
 public class MyTrieSet implements TrieSet61B {
     private Node root;
-    private int n;
+    private int size;
+
+    public MyTrieSet(){
+        root = new Node();
+        size = 0;
+    }
 
     @Override
     public void clear(){
@@ -24,7 +29,10 @@ public class MyTrieSet implements TrieSet61B {
             throw new IllegalArgumentException("argument to contains() is null");
         }
         Node x = get(root, key, 0);
-        if (x == null | x.isKey == false) {
+        if (x == null) {
+            return null;
+        }
+        if (x.isKey != true) {
             return null;
         }
         return x.val;
@@ -55,7 +63,7 @@ public class MyTrieSet implements TrieSet61B {
             curr = curr.map.get(c);
         }
         curr.isKey = true;
-        n++;
+        size++;
     }
 
     private void prefixHelp(Node x, String prefix, List keys) {
@@ -115,6 +123,10 @@ public class MyTrieSet implements TrieSet61B {
         public Node(char val, boolean isKey) {
             this.val = val;
             this.isKey = isKey;
+            this.map = new HashMap<>();
+        }
+        public Node(){
+            this.map = new HashMap<>();
         }
     }
 }
