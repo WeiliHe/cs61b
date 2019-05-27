@@ -19,12 +19,49 @@ public class SeparableEnemySolver {
         this.g = g;
     }
 
+    private boolean isSeparable(Set parentNeighbors, Set childNeighbors, Object neighbor, Set symbolNeedExplore) {
+        symbolNeedExplore.remove(neighbor);
+        if (childNeighbors == null) {
+            return true;
+        }
+        for (Object childNeighbor: childNeighbors) {
+//            System.out.println(parentNeighbors + "round " + childNeighbors + "child" + childNeighbor);
+            if (parentNeighbors.contains(childNeighbor)) {
+                return false;
+            } else {
+                Set nextChildNeighbors = g.neighbors((String) childNeighbor);
+                if (nextChildNeighbors != null) {
+                    nextChildNeighbors.remove(neighbor);
+                }
+                boolean separable = isSeparable(childNeighbors, nextChildNeighbors, childNeighbor, symbolNeedExplore);
+                if (!separable) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
      * Returns true if input is separable, false otherwise.
      */
     public boolean isSeparable() {
+        Set<String> symbolNeedExplore = new HashSet<>(g.labels());
+        Set<String> labels = g.labels();
+//        while (symbolNeedExplore.size() != 0) {
+        for (String label: labels) {
+            if (symbolNeedExplore.contains(label) == false) {
+                continue;
+            }
+            Set parentSet = new HashSet();
+            parentSet.add(label);
+            if (!isSeparable(parentSet, g.neighbors(label), label, symbolNeedExplore)) {
+                return false;
+            }
+            }
+//        }
         // TODO: Fix me
-        return false;
+        return true;
     }
 
 
