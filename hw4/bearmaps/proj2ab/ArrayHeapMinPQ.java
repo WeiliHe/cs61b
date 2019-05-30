@@ -114,6 +114,7 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         if (size() == 0) {
             throw new NoSuchElementException("PQ is empty");
         }
+        resize();
         PriorityNode last = items[n];
         T smallestItem = items[1].getItem();
         items[n] = null;
@@ -205,6 +206,8 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         stringPQ.add("e", 6);
         stringPQ.add("f", 4);
         stringPQ.add("g", 3);
+        stringPQ.add("h", 2);
+        stringPQ.add("i", 1);
 //        stringPQ.testBasic();
     }
 }

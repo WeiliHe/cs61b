@@ -1,11 +1,12 @@
 package bearmaps.hw4;
 
 import bearmaps.proj2ab.ArrayHeapMinPQ;
+import bearmaps.proj2ab.DoubleMapPQ;
 import edu.princeton.cs.algs4.Stopwatch;
 
 import java.util.*;
 
-public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex>{
+public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
     private SolverOutcome outcome;
     private double solutionWeight = 0;
     private List<Vertex> solution = new ArrayList<>();
@@ -14,7 +15,7 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex>{
     private HashMap<Vertex, Vertex> edgeTo = new HashMap<>();
     private HashMap<Vertex, Double> distTo = new HashMap<>();
     private HashSet<Vertex> marked = new HashSet<>();
-    private ArrayHeapMinPQ<Vertex> fringe = new ArrayHeapMinPQ<>();
+    private DoubleMapPQ<Vertex> fringe = new DoubleMapPQ<>();
     private Vertex start;
     private Vertex end;
 
@@ -36,13 +37,13 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex>{
             marked.add(v);
 //          relax all edges outgoing from v
             List<WeightedEdge<Vertex>> neighborEdges = input.neighbors(v);
-            for (WeightedEdge e: neighborEdges){
+            for (WeightedEdge e: neighborEdges) {
                 Vertex eTo = (Vertex) e.to();
                 Vertex eFrom = (Vertex) e.from();
-                if (marked.contains(eTo)){
+                if (marked.contains(eTo)) {
                     continue;
                 }
-                if (!distTo.containsKey(eTo)){
+                if (!distTo.containsKey(eTo)) {
                     double dist = distTo.get(eFrom) + e.weight();
                     distTo.put(eTo, dist);
                     edgeTo.put(eTo, eFrom);
