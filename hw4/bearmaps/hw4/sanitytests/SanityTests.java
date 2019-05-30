@@ -5,7 +5,6 @@ import bearmaps.hw4.ShortestPathsSolver;
 import bearmaps.hw4.SolverOutcome;
 import bearmaps.hw4.lectureexample.WeightedDirectedGraph;
 import org.junit.Test;
-
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
