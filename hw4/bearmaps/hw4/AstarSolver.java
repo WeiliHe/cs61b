@@ -69,11 +69,11 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
     }
 
     private List<Vertex> getSolution() {
-        if (outcome != SolverOutcome.SOLVED) {
+        if (outcome.equals(SolverOutcome.SOLVED)) {
             return new ArrayList<>();
         }
         List<Vertex> path = new ArrayList<>();
-        for (Vertex x = this.end; x != this.start; x = edgeTo.get(x)) {
+        for (Vertex x = this.end; !x.equals(this.start); x = edgeTo.get(x)) {
             path.add(x);
         }
         path.add(this.start);

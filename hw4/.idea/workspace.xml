@@ -58,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bearmaps/hw4/slidingpuzzle/DemoSlidingPuzzleSolution.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+            <state relative-caret-position="322">
+              <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -138,9 +138,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="391" />
-    <option name="y" value="121" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="471" />
+    <option name="y" value="36" />
     <option name="width" value="1295" />
     <option name="height" value="1008" />
   </component>
@@ -312,6 +312,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="391" y="121" width="1295" height="1008" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24249797" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -516,8 +517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bearmaps/hw4/slidingpuzzle/DemoSlidingPuzzleSolution.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+        <state relative-caret-position="322">
+          <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
         </state>
       </provider>
     </entry>
