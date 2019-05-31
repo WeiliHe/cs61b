@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectFrameBounds">
+    <option name="x" value="471" />
+    <option name="y" value="36" />
+    <option name="width" value="1296" />
+    <option name="height" value="1008" />
+  </component>
+  <component name="RunManager">
+    <configuration name="DemoIntegerHopPuzzleSolution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bearmaps.hw4.integerhoppuzzle.DemoIntegerHopPuzzleSolution" />
+      <module name="hw4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bearmaps.hw4.integerhoppuzzle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DemoIntegerHopPuzzleSolution" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
