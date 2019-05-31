@@ -24,7 +24,7 @@
         <entry file="file://$PROJECT_DIR$/SeparableEnemySolver.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="276">
-              <caret line="56" selection-start-line="56" selection-end-line="56" />
+              <caret line="75" selection-start-line="75" selection-end-line="75" />
             </state>
           </provider>
         </entry>
@@ -90,6 +90,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558878480220" />
   </component>
   <component name="RunDashboard">
@@ -254,37 +255,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/SeparableEnemySolver.java</url>
-          <line>28</line>
+          <line>29</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/SeparableEnemySolver.java</url>
-          <line>35</line>
+          <line>40</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/SeparableEnemySolver.java</url>
-          <line>31</line>
+          <line>32</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/SeparableEnemySolver.java</url>
-          <line>50</line>
+          <line>69</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/SeparableEnemySolver.java</url>
-          <line>58</line>
+          <line>77</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/SeparableEnemySolver.java</url>
-          <line>56</line>
+          <line>75</line>
           <properties />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
@@ -307,7 +308,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SeparableEnemySolverTests.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="836">
           <caret line="42" selection-start-line="42" selection-end-line="42" />
         </state>
@@ -326,7 +326,7 @@
     <entry file="file://$PROJECT_DIR$/SeparableEnemySolver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
         </state>
       </provider>
     </entry>
