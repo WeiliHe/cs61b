@@ -69,7 +69,7 @@ public class AStarSolver<Vertex> implements ShortestPathsSolver<Vertex> {
     }
 
     private List<Vertex> getSolution() {
-        if (outcome.equals(SolverOutcome.SOLVED)) {
+        if (!outcome.equals(SolverOutcome.SOLVED)) {
             return new ArrayList<>();
         }
         List<Vertex> path = new ArrayList<>();
