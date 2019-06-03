@@ -10,6 +10,7 @@ import java.util.List;
  * and (incorrectly) says the task is UNSOLVABLE.
  * Created by hug.
  */
+
 public class LazySolver<Vertex> implements ShortestPathsSolver<Vertex> {
     private SolverOutcome outcome;
     private double solutionWeight;
