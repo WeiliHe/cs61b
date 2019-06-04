@@ -1,4 +1,6 @@
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.Stopwatch;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -7,29 +9,38 @@ public class TestSortAlgs {
 
     @Test
     public void testQuickSort() {
-        Queue<String> tas = new Queue<String>();
-        tas.enqueue("Joe");
-        tas.enqueue("Omar");
-        tas.enqueue("Itai");
-        tas.enqueue("Felix");
-        tas.enqueue("Alice");
+        Queue<Integer> tas = new Queue<Integer>();
+        int N = 400000;
+        Stopwatch sw = new Stopwatch();
+        for (int i = 0; i <= N; i++) {
+            tas.enqueue((int) (Math.random() * N));
+        }
         tas = QuickSort.quickSort(tas);
+        System.out.println(sw.elapsedTime());
+//        System.out.println(tas);
         assertTrue(isSorted(tas));
     }
 
     @Test
     public void testMergeSort() {
-        Queue<String> tas = new Queue<String>();
-        tas.enqueue("Joe");
-        tas.enqueue("Omar");
-        tas.enqueue("Itai");
-        tas.enqueue("Felix");
-        tas.enqueue("Alice");
-        tas.enqueue("Apple");
-        tas.enqueue("Fuck");
-        tas.enqueue("Zark");
+//        Queue<String> tas = new Queue<String>();
+//        tas.enqueue("Joe");
+//        tas.enqueue("Omar");
+//        tas.enqueue("Itai");
+//        tas.enqueue("Felix");
+//        tas.enqueue("Alice");
+//        tas.enqueue("Apple");
+//        tas.enqueue("Fuck");
+//        tas.enqueue("Zark");
+        Queue<Integer> tas = new Queue<Integer>();
+        int N = 400000;
+        Stopwatch sw = new Stopwatch();
+        for (int i = 0; i <= N; i++) {
+            tas.enqueue((int) (Math.random() * N));
+        }
         tas = MergeSort.mergeSort(tas);
-        System.out.println(tas);
+        System.out.println(sw.elapsedTime());
+//        System.out.println(tas);
         assertTrue(isSorted(tas));
     }
 
