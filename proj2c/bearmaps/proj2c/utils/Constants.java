@@ -22,6 +22,10 @@ public class Constants {
             ROOT_LRLAT = 37.82280243352756, ROOT_LRLON = -122.2119140625;
 
     /**
+     * This is how deep it is for the images exist
+     */
+    public static final int Depth = 7;
+    /**
      * The OSM XML file path. Downloaded from <a href="http://download.bbbike.org/osm/">here</a>
      * using custom region selection.
      **/

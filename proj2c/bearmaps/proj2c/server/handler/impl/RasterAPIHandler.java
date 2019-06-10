@@ -5,6 +5,7 @@ import bearmaps.proj2c.server.handler.APIRouteHandler;
 import spark.Request;
 import spark.Response;
 import bearmaps.proj2c.utils.Constants;
+import bearmaps.proj2c.utils.Tuple;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,6 +17,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 import static bearmaps.proj2c.utils.Constants.SEMANTIC_STREET_GRAPH;
 import static bearmaps.proj2c.utils.Constants.ROUTE_LIST;
@@ -47,7 +49,7 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
 
 
 //    this is actually hard to implement if the map is large, especially for the latitude, how do you know it's north or south
-    private boolean inOrnot(double ullon, double lrlon, double ullat, double lrlat) {
+    private boolean coverOrnot(double ullon, double lrlon, double ullat, double lrlat) {
         if (Constants.ROOT_LRLON - ullon < 0 & Constants.ROOT_ULLON - ullon < 0) {
             return false;
         } else if (Constants.ROOT_LRLON - ullon > 0 & Constants.ROOT_ULLON - ullon > 0) {
@@ -61,25 +63,76 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
         }
     }
 
-    private String[][] exploreTiles(double ullon, double lrlon, double ullat, double lrlat, double totalLon, double totalLat) {
-        
+//    the start num of the images
+    private Tuple<Integer, Integer> getHorizStartEnd(double ullon, double lrlon, int imgNum){
+//        Longitudes per image
+//        number of images in this depth
+        double LonImg = (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / imgNum;
+        int start = 0;
+        int end = 0;
+        start = (int) Math.floor((ullon - Constants.ROOT_ULLON) / Math.abs(LonImg));
+        end = (int) Math.floor(Math.abs(lrlon - Constants.ROOT_ULLON) / Math.abs(LonImg));
+        start = Math.max(0, start);
+        end = Math.min(imgNum - 1, end);
+        Tuple horizStartEnd = new Tuple(start, end);
+        return horizStartEnd;
     }
 
-    private String[][] getTiles(Map<String, Double> requestParams) {
+    private Tuple<Integer, Integer> getVerticalStartEnd(double ullat, double lrlat, int imgNum){
+//        Longitudes per image
+        double LatImg = (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT) / imgNum;
+        int start = 0;
+        int end = 0;
+        start  = (int) Math.floor(Math.abs(Constants.ROOT_ULLAT - ullat) / Math.abs(LatImg));
+        end = (int) Math.floor(Math.abs(Constants.ROOT_ULLAT - lrlat) / Math.abs(LatImg));
+        start = Math.max(0, start);
+        end = Math.min(imgNum - 1, end);
+        Tuple VerticalStartEnd = new Tuple(start, end);
+        return VerticalStartEnd;
+    }
+
+    private Map<String, Object> getReturn(Map<String, Double> requestParams) {
         double ullon = requestParams.get("ullon");
         double lrlon = requestParams.get("lrlon");
         double ullat = requestParams.get("ullat");
         double lrlat = requestParams.get("lrlat");
         double w = requestParams.get("w");
-        double l = requestParams.get("l");
+        double h = requestParams.get("h");
 //        from left to right, from up to down
         double totalLon = lrlon - ullon;
         double totalLat = lrlat - ullat;
-        if (inOrnot(ullon, lrlon, ullat, lrlat)) {
-            return new String[0][0];
+        Map<String, Object> returnParams = new HashMap<>();
+        String[][] images = new String[0][0];
+        if (!coverOrnot(ullon, lrlon, ullat, lrlat)) {
+            returnParams = queryFail();
+            return returnParams;
         } else {
-            return new String[0][0];
+            double RootLonDPP = (Constants.ROOT_LRLON - Constants.ROOT_ULLON) / Constants.TILE_SIZE;
+            double boxLonDPP = (lrlon - ullon) / w;
+            int Depth = (int) Math.ceil((Math.log(RootLonDPP / boxLonDPP) / Math.log(2)));
+            Depth = Math.min(Depth, Constants.Depth);
+            int imgNum = (int) Math.pow(2 / 1.0, Depth / 1.0);
+//            need to decide the start index of the images (longitude to start with)
+            Tuple<Integer, Integer> horizStartEnd = getHorizStartEnd(ullon, lrlon, imgNum);
+            Tuple<Integer, Integer> verticalStartEnd = getVerticalStartEnd(ullat, lrlat, imgNum);
+
+            int shape0 = horizStartEnd.getSecond() - horizStartEnd.getFirst() + 1;
+            int shape1 = verticalStartEnd.getSecond() - verticalStartEnd.getFirst() + 1;
+            images = new String[shape1][shape0];
+            for (int i = 0; i < shape1; i++) {
+                for (int j = 0; j < shape0; j++) {
+                    images[i][j] = String.format("d%1$d_x%2$d_y%3$d.png", Depth, horizStartEnd.getFirst() + j, verticalStartEnd.getFirst()+ i);
+                }
+            }
+            returnParams.put("render_grid", images);
+            returnParams.put("raster_ul_lon", Constants.ROOT_ULLON + (Constants.ROOT_LRLON - Constants.ROOT_ULLON )* horizStartEnd.getFirst() / imgNum);
+            returnParams.put("raster_ul_lat", Constants.ROOT_ULLAT - (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT )* verticalStartEnd.getFirst() / imgNum);
+            returnParams.put("raster_lr_lon", Constants.ROOT_ULLON + (Constants.ROOT_LRLON - Constants.ROOT_ULLON )* (horizStartEnd.getSecond() + 1)/ imgNum);
+            returnParams.put("raster_lr_lat", Constants.ROOT_ULLAT - (Constants.ROOT_ULLAT - Constants.ROOT_LRLAT )* (verticalStartEnd.getSecond() + 1) / imgNum);
+            returnParams.put("depth", Depth);
+            returnParams.put("query_success", true);
         }
+        return returnParams;
     }
 
 
@@ -122,9 +175,9 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
     public Map<String, Object> processRequest(Map<String, Double> requestParams, Response response) {
         System.out.println("yo, wanna know the parameters given by the web browser? They are:");
         System.out.println(requestParams);
-        Map<String, Object> results = new HashMap<>();
-        System.out.println("Since you haven't implemented RasterAPIHandler.processRequest, nothing is displayed in "
-                + "your browser.");
+        Map<String, Object> results = getReturn(requestParams);
+//        System.out.println("Since you haven't implemented RasterAPIHandler.processRequest, nothing is displayed in "
+//                + "your browser.");
         return results;
     }
 
