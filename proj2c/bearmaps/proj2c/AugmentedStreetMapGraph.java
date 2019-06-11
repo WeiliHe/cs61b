@@ -3,6 +3,8 @@ package bearmaps.proj2c;
 import bearmaps.hw4.streetmap.Node;
 import bearmaps.hw4.streetmap.StreetMapGraph;
 import bearmaps.proj2ab.Point;
+import bearmaps.proj2ab.KDTree;
+import bearmaps.proj2ab.WeirdPointSet;
 
 import java.util.*;
 
@@ -14,12 +16,29 @@ import java.util.*;
  * @author Alan Yao, Josh Hug, ________
  */
 public class AugmentedStreetMapGraph extends StreetMapGraph {
+    private List<Point> points;
+    private HashMap<Point, Node> pointToNode;
+    private KDTree pointsKDTree;
+//    private WeirdPointSet pointsWeird;
 
     public AugmentedStreetMapGraph(String dbPath) {
         super(dbPath);
-        // You might find it helpful to uncomment the line below:
-        // List<Node> nodes = this.getNodes();
+//         You might find it helpful to uncomment the line below:
+        List<Node> nodes = this.getNodes();
+//         exclude the nodes without neighbours
+        points = new ArrayList<>();
+        pointToNode = new HashMap<>();
+        for (Node node: nodes) {
+            if (neighbors(node.id()).size() != 0) {
+                Point point = new Point(node.lon(), node.lat());
+                points.add(point);
+                pointToNode.put(point, node);
+            }
+        }
+//        pointsWeird = new WeirdPointSet(points);
+        pointsKDTree = new KDTree(points);
     }
+
 
 
     /**
@@ -30,7 +49,13 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
      * @return The id of the node in the graph closest to the target.
      */
     public long closest(double lon, double lat) {
-        return 0;
+//        Point closest = pointsWeird.nearest(lon, lat);
+        Point closest = pointsKDTree.nearest(lon, lat);
+        if (closest != null) {
+            return pointToNode.get(closest).id();
+        } else {
+            return 0;
+        }
     }
 
 

@@ -52,7 +52,7 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
     private boolean coverOrnot(double ullon, double lrlon, double ullat, double lrlat) {
         if (Constants.ROOT_LRLON - ullon < 0 & Constants.ROOT_ULLON - ullon < 0) {
             return false;
-        } else if (Constants.ROOT_LRLON - ullon > 0 & Constants.ROOT_ULLON - ullon > 0) {
+        } else if (Constants.ROOT_LRLON - lrlon > 0 & Constants.ROOT_ULLON - lrlon > 0) {
             return false;
         } else if (lrlat > Constants.ROOT_ULLAT & ullat > Constants.ROOT_ULLAT) {
             return false;
@@ -178,6 +178,7 @@ public class RasterAPIHandler extends APIRouteHandler<Map<String, Double>, Map<S
         Map<String, Object> results = getReturn(requestParams);
 //        System.out.println("Since you haven't implemented RasterAPIHandler.processRequest, nothing is displayed in "
 //                + "your browser.");
+        System.out.println("results"+ results);
         return results;
     }
 
