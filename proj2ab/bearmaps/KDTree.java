@@ -1,4 +1,6 @@
-package bearmaps;
+package bearmaps.proj2ab;
+import bearmaps.proj2c.utils.Tuple;
+
 import java.lang.Math;
 import java.util.List;
 import java.util.Comparator;
@@ -66,14 +68,14 @@ public class KDTree implements PointSet {
         }
     }
 
-    private Node nearest(Node n, Point goal, Node best, double bestDist) {
+    private Tuple<Node, Double> nearest(Node n, Point goal, Tuple<Node, Double> bestNodeAnddist) {
         if (n == null) {
-            return best;
+            return bestNodeAnddist;
         }
         double currDist = n.point.distance(n.point, goal);
-        if (currDist < bestDist) {
-            best = n;
-            bestDist = currDist;
+        if (currDist <= bestNodeAnddist.getSecond()) {
+            bestNodeAnddist.setFirst(n);
+            bestNodeAnddist.setSecond(currDist);
         }
         Node goodSide;
         Node badSide;
@@ -84,20 +86,22 @@ public class KDTree implements PointSet {
             goodSide = n.right;
             badSide = n.left;
         }
-        best = nearest(goodSide, goal, best, bestDist);
+        bestNodeAnddist = nearest(goodSide, goal, bestNodeAnddist);
         if (badSide != null) {
-            if (distanceFromBadside(badSide, goal) > best.point.distance(best.point, goal)) {
-                best = nearest(badSide, goal, best, bestDist);
+            if (distanceFromBadside(badSide, goal) <= bestNodeAnddist.getSecond()) {
+                bestNodeAnddist = nearest(badSide, goal, bestNodeAnddist);
             }
         }
-        return best;
+        return bestNodeAnddist;
     }
 
     @Override
     public Point nearest(double x, double y) {
         Point goal = new Point(x, y);
-        Node nearestNode = nearest(root, goal, root, goal.distance(root.point, goal));
-        return nearestNode.point;
+//        Node nearestNode = nearest(root, goal, root, goal.distance(root.point, goal));
+        Tuple<Node, Double> nearestTuple = nearest(root, goal, new Tuple<Node, Double>(root, goal.distance(root.point, goal)));
+        return nearestTuple.getFirst().point;
+
     }
 
     private class Node {
