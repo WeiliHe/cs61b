@@ -2,7 +2,9 @@ package bearmaps.proj2c;
 
 import bearmaps.hw4.WeirdSolver;
 import bearmaps.hw4.AStarSolver;
+import bearmaps.hw4.WeightedEdge;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -32,17 +34,59 @@ public class Router {
         return new WeirdSolver<>(g, src, dest, 20).solution();
     }
 
-    /**
-     * Create the list of directions corresponding to a route on the graph.
-     * @param g The graph to use.
-     * @param route The route to translate into directions. Each element
-     *              corresponds to a node from the graph in the route.
-     * @return A list of NavigatiionDirection objects corresponding to the input
-     * route.
-     */
+//    /**
+//     * Create the list of directions corresponding to a route on the graph.
+//     * @param g The graph to use.
+//     * @param route The route to translate into directions. Each element
+//     *              corresponds to a node from the graph in the route.
+//     * @return A list of NavigatiionDirection objects corresponding to the input
+//     * route.
+//     */
+    private static String getWay(AugmentedStreetMapGraph g, Long v, Long w) {
+        WeightedEdge<Long> edgeVW;
+        for (WeightedEdge<Long> edge: g.neighbors(v)) {
+            if (edge.to().equals(w)) {
+                edgeVW = edge;
+                return edgeVW.getName();
+            }
+        }
+        return null;
+    }
+
     public static List<NavigationDirection> routeDirections(AugmentedStreetMapGraph g, List<Long> route) {
         /* fill in for part IV */
-        return null;
+        List<NavigationDirection> nvInstruction = new ArrayList<>();
+        String preWay = "";
+        String nextWay = "start";
+        double preBearing = 0.0;
+        double nextBearing = 0.0;
+        NavigationDirection nvDirection = new NavigationDirection();
+
+        for (int i = 0; i < route.size() - 1; i++) {
+            Long pre = route.get(i);
+            Long next = route.get(i + 1);
+            nextWay = getWay(g, pre, next);
+            nextBearing = NavigationDirection.bearing(g.lon(pre), g.lon(next), g.lat(pre), g.lat(next));
+//            this is for the first one, start
+            if (!nextWay.equals(preWay)) {
+                NavigationDirection nextnvDirection = new NavigationDirection();
+                if (i == 0) {
+                    nextnvDirection.direction = 0;
+                } else {
+                    nextnvDirection.direction = NavigationDirection.getDirection(preBearing, nextBearing);
+                }
+                nextnvDirection.way = (nextWay != null) ? nextWay : NavigationDirection.UNKNOWN_ROAD;
+                nextnvDirection.distance = g.estimatedDistanceToGoal(pre, next);
+                nvDirection = nextnvDirection;
+                nvInstruction.add(nvDirection);
+            } else {
+                nvDirection.distance = nvDirection.distance + g.estimatedDistanceToGoal(pre, next);
+            }
+            preWay = nextWay;
+            preBearing = nextBearing;
+            System.out.println(nvDirection.toString());
+        }
+        return nvInstruction;
     }
 
     /**

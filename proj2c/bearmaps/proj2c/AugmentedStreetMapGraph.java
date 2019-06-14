@@ -5,6 +5,7 @@ import bearmaps.hw4.streetmap.StreetMapGraph;
 import bearmaps.proj2ab.Point;
 import bearmaps.proj2ab.KDTree;
 import bearmaps.proj2ab.WeirdPointSet;
+import bearmaps.lab11.MyTrieSet;
 
 import java.util.*;
 
@@ -16,27 +17,64 @@ import java.util.*;
  * @author Alan Yao, Josh Hug, ________
  */
 public class AugmentedStreetMapGraph extends StreetMapGraph {
-    private List<Point> points;
-    private HashMap<Point, Node> pointToNode;
+//    point is (lat, lon), pointToNode is a map, pointsKDTree is to get the closest, lwToUpp is the lower case to upper case;
+    private List<Point> points = new ArrayList<>();
+    private HashMap<Point, Node> pointToNode = new HashMap<>();
     private KDTree pointsKDTree;
+    private HashMap<String, String> lwToUpp = new HashMap<>();
+    private MyTrieSet trieSet = new MyTrieSet();
 //    private WeirdPointSet pointsWeird;
+//    this is a wired data structure, should be created in another to avoid some awkward calls
+    private HashMap<String, List<Node>> nameToNode = new HashMap<>();
 
     public AugmentedStreetMapGraph(String dbPath) {
         super(dbPath);
 //         You might find it helpful to uncomment the line below:
         List<Node> nodes = this.getNodes();
-//         exclude the nodes without neighbours
-        points = new ArrayList<>();
-        pointToNode = new HashMap<>();
         for (Node node: nodes) {
-            if (neighbors(node.id()).size() != 0) {
-                Point point = new Point(node.lon(), node.lat());
-                points.add(point);
-                pointToNode.put(point, node);
-            }
+//           this is preparation for the prefix method
+            cleanNames(node);
+//            this is for getting the points for the nearest method, exclude the nodes without neighbours
+            getPoints(node);
         }
 //        pointsWeird = new WeirdPointSet(points);
         pointsKDTree = new KDTree(points);
+    }
+
+    /**
+        for storing the cleaned names, later used for prefix autocomplete
+     */
+    private void cleanNames(Node node) {
+        String originName = node.name();
+        if (originName != null) {
+            if (originName.equals("Montano Velo")) {
+                System.out.println("Montano Velo is here");
+            }
+            String cleanName = cleanString(originName);
+//                String cleanName = cleanString(originName);
+            trieSet.add(cleanName);
+            lwToUpp.put(cleanName, originName);
+//            this is for mapping the nodes to string, for getLocations method
+            List<Node> nodeList;
+            if (!nameToNode.containsKey(cleanName)) {
+                nodeList = new ArrayList<>();
+            } else {
+                nodeList = nameToNode.get(cleanName);
+            }
+            nodeList.add(node);
+            nameToNode.put(cleanName, nodeList);
+        }
+    }
+
+    /**
+     * get the list of points
+     */
+    private void getPoints(Node node) {
+        if (neighbors(node.id()).size() != 0) {
+            Point point = new Point(node.lon(), node.lat());
+            points.add(point);
+            pointToNode.put(point, node);
+        }
     }
 
 
@@ -68,7 +106,13 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
      * cleaned <code>prefix</code>.
      */
     public List<String> getLocationsByPrefix(String prefix) {
-        return new LinkedList<>();
+        String cleanPrefix = cleanString(prefix);
+        List<String> matchKeys = trieSet.keysWithPrefix(cleanPrefix);
+        List<String> originKeys = new LinkedList<>();
+        for (String key: matchKeys) {
+            originKeys.add(lwToUpp.get(key));
+        }
+        return originKeys;
     }
 
     /**
@@ -85,7 +129,17 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
      * "id" -> Number, The id of the node. <br>
      */
     public List<Map<String, Object>> getLocations(String locationName) {
-        return new LinkedList<>();
+        List<Node> nodesOfLocations = nameToNode.get(cleanString(locationName));
+        List locationsList = new LinkedList<>();
+        for (Node node: nodesOfLocations){
+            Map<String, Object> map = new HashMap<>();
+            map.put("lat", node.lat());
+            map.put("lon", node.lon());
+            map.put("name", node.name());
+            map.put("id", node.id());
+            locationsList.add(map);
+        }
+        return locationsList;
     }
 
 
@@ -96,7 +150,7 @@ public class AugmentedStreetMapGraph extends StreetMapGraph {
      * @return Cleaned string.
      */
     private static String cleanString(String s) {
-        return s.replaceAll("[^a-zA-Z ]", "").toLowerCase();
+        return s.replaceAll("[^a-zA-Z]", "").toLowerCase();
     }
 
 }
