@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bearmaps/proj2c/AugmentedStreetMapGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+            <state relative-caret-position="115">
+              <caret line="89" column="50" selection-start-line="89" selection-start-column="50" selection-end-line="89" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getPoints#0;class#AugmentedStreetMapGraph#0" />
@@ -178,9 +178,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="593" />
-    <option name="y" value="45" />
+    <option name="y" value="124" />
     <option name="width" value="1288" />
     <option name="height" value="990" />
   </component>
@@ -385,7 +385,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="593" y="45" width="1288" height="990" extended-state="1" />
+    <frame x="593" y="124" width="1288" height="990" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
@@ -403,7 +403,7 @@
       <window_info anchor="bottom" id="Style Checker" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31807512" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31807512" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.36492375" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -818,8 +818,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bearmaps/proj2c/AugmentedStreetMapGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="61" column="28" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+        <state relative-caret-position="115">
+          <caret line="89" column="50" selection-start-line="89" selection-start-column="50" selection-end-line="89" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getPoints#0;class#AugmentedStreetMapGraph#0" />
