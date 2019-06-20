@@ -20,7 +20,7 @@ import java.util.Collections;
 public class HexWorld {
     private static final int WIDTH = 50;
     private static final int HEIGHT = 50;
-    private static final long SEED = 2873123;
+    private static final long SEED = 287313;
     private static final Random RANDOM1 = new Random(SEED);
     private static final Random RANDOM2 = new Random(SEED);
 
@@ -37,20 +37,22 @@ public class HexWorld {
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length + 2 * i; j++) {
                 if (isInWorld(x - i + j, y + i)) {
+//                    tiles[x - i + j][y + i] = tileType;
                     System.out.print("x:" + (x));
                     System.out.print(",y:" + (y));
                     System.out.print(",i:" + (i));
                     System.out.print(",j:" + (j));
                     System.out.print(",pos:" + "xa" + (x - i + j) + "ya" + (y + i));
-                    tiles[x - i + j][y + i] = tileType;
                     System.out.println("");
+                    tiles[x - i + j][y + i] = TETile.colorVariant(tileType, 32, 32, 32, RANDOM1);
                 }
             }
         }
         for (int i = length - 1; i >= 0; i--) {
             for (int j = 0; j < length + 2 * i; j++) {
                 if (isInWorld(x - i + j, y + 2 * length - i - 1)) {
-                    tiles[x - i + j][y + 2 * length - i - 1] = tileType;
+//                    tiles[x - i + j][y + 2 * length - i - 1] = tileType;
+                    tiles[x - i + j][y + 2 * length - i - 1] = TETile.colorVariant(tileType, 32, 32, 32, RANDOM1);
                 }
             }
         }
@@ -79,7 +81,7 @@ public class HexWorld {
         int y;
         x = ulPointStart.x() + (2 * length - 1) * col;
 
-        if (col <= length / 2) {
+        if (col <= columns.length / 2) {
             y = ulPointStart.y() - col * length + row * (2 * length);
         } else {
 //            because of symmetric
@@ -105,8 +107,9 @@ public class HexWorld {
         int ylowerBound = (longestHexagonNum - HexagonNumLeftMost) * 2 * length;
         int yupperBound = Math.max(ylowerBound, HEIGHT - (longestHexagonNum * 2 * length - 1) + (longestHexagonNum - HexagonNumLeftMost) * length);
 
-        int x = xlowerBound + randomInt % (xupperBound - xlowerBound);
-        int y = ylowerBound + randomInt % (yupperBound - ylowerBound);
+//       in case it's out of bound
+        int x = (xupperBound > xlowerBound) ? xlowerBound + randomInt % (xupperBound - xlowerBound): xlowerBound;
+        int y = (yupperBound > ylowerBound) ? ylowerBound + randomInt % (yupperBound - ylowerBound) : ylowerBound;
         return new Point(x, y);
     }
 
@@ -133,7 +136,7 @@ public class HexWorld {
     }
 
     
-    public static void telHexagons(Integer[] columns, int length, TETile[][] tiles) {
+    public static void tesselation(Integer[] columns, int length, TETile[][] tiles) {
         initTiles(tiles);
         Point ulPointStart = getULPointofWhole(columns, length, RANDOM1.nextInt(Integer.SIZE - 1));
         for (int i = 0; i < columns.length; i++) {
@@ -164,12 +167,12 @@ public class HexWorld {
     }
 
     public static void main(String[] args) {
-        Integer[] columns = new Integer[]{3, 4, 5, 4, 3};
+        Integer[] columns = new Integer[]{2, 3, 4, 5, 4, 3, 2};
         int length = 4;
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT);
         TETile[][] randomTiles = new TETile[WIDTH][HEIGHT];
-        telHexagons(columns, length, randomTiles);
+        tesselation(columns, length, randomTiles);
         ter.renderFrame(randomTiles);
     }
 
