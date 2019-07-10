@@ -12,20 +12,30 @@ public class Room {
     private Point center;
 
     // constructor for the new rooms
-    public Room(Point upperLeft, Point lowerRight, int w, int h) {
-        this.upperLeft = upperLeft;
-        this.lowerRight = lowerRight;
+    public Room(Point upperLeft, int w, int h) {
+        int x1 = upperLeft.x();
+        int y1 = upperLeft.y();
+        this.upperLeft = new Point (x1, y1);
+        this.lowerRight = new Point (x1 + w, y1 - h);
         this.w = w;
         this.h = h;
-        center = new Point (this.upperLeft.x() + this.lowerRight.x() / 2, this.upperLeft.y() + this.lowerRight.y() / 2);
+        center = new Point ( (2 * x1 + w / 2), (2 * y1 - h) / 2);
     }
 
-    public Point upperLeft() {
-        return upperLeft;
+    public int upperLeftx() {
+        return upperLeft.x();
     }
 
-    public Point lowerRight() {
-        return lowerRight;
+    public int upperLefty(){
+        return upperLeft.y();
+    }
+
+    public int lowerRightx() {
+        return lowerRight.x();
+    }
+
+    public int lowerRighty(){
+        return lowerRighty();
     }
 
     public Point center() {
@@ -33,8 +43,8 @@ public class Room {
     }
 
     // return true if the room intersects with another
-    public boolean overlapped(Room room) {
-        return (upperLeft.x() <= room.lowerRight().x() && lowerRight.x() >= room.upperLeft().x()
-        && upperLeft.y() <= room.lowerRight().y() && lowerRight.y() >= room.upperLeft().y());
+    public boolean overlap(Room room) {
+        return (x1 <= room.x2() && x2 >= room.x1()
+        && y1 <= room.y2() && y2 >= y1());
     }
 }
