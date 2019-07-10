@@ -26,7 +26,7 @@ public class WorldGenerator {
         int h = RandomUtils.uniform(RAMDOM, minHeight, maxHeight + 1);
         int x1 = RandomUtils.uniform(RAMDOM, 0, WIDTH - w + 1);
         int y1 = RandomUtils.uniform(RAMDOM, h, WIDTH - 1);
-        Room newRoom = new Room(x1, y1, w, h);
+        Room newRoom = new Room(new Point (x1, y1), w, h);
         boolean overlapped = false;
         for (Room room: rooms) {
             if (newRoom.overlap(room)) {
@@ -42,10 +42,10 @@ public class WorldGenerator {
     }
 
     private void createRoom(TETile[][] tiles, Room room) {
-        int x1 = room.x1();
-        int y1 = room.y1();
-        int x2 = room.x2();
-        int y2 = room.y2();
+        int x1 = room.upperLeftx();
+        int y1 = room.upperLefty();
+        int x2 = room.lowerRightx();
+        int y2 = room.lowerRighty();
         // draw wall
         for (int x = x1; x <= x2; x++) {
             tiles[x][y1] = Tileset.WALL;

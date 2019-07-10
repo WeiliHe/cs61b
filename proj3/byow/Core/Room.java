@@ -44,7 +44,7 @@ public class Room {
 
     // return true if the room intersects with another
     public boolean overlap(Room room) {
-        return (x1 <= room.x2() && x2 >= room.x1()
-        && y1 <= room.y2() && y2 >= y1());
+        return (this.upperLeftx() <= room.lowerRightx() && this.lowerRightx() >= room.upperLeftx()
+        && this.upperLeftx() <= room.lowerRighty() && this.lowerRighty() >= room.upperLefty());
     }
 }
