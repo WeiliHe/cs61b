@@ -5,6 +5,8 @@ import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -22,8 +24,9 @@ public class WorldGenerator {
     private static final int maxRoomNum = 30;
     private static final int maxTry = 60; // maximum try to generate room, in case infinite loop to reach the room num
     private static final long SEED = 2873123;
-    private static final Random RANDOM1 = new Random(SEED );
-    private static final Random RANDOM2 = new Random(SEED );
+    private static final Random RANDOM1 = new Random(SEED); // for rooms
+    private static final Random RANDOM2 = new Random(SEED); // for hallways
+    private static final Random RANDOM3 = new Random(SEED); // for locked door
 
 
     public static void generate() {
@@ -53,10 +56,34 @@ public class WorldGenerator {
             }
         }
         cleanWalls(tiles);
+        addLockedDoor(tiles, RANDOM3);
         System.out.println(rooms.size());
         ter.renderFrame(tiles);
     }
 
+
+    // add a locked door, there could be many ways, the better should be add a set of a floor and walls,
+    // when creating the LockedDoor only loops through the walls
+    // 1. search the closest walls in the left, right, up, down
+    // 2. search in the rooms
+    // 3. just search randomly
+
+    private static void addLockedDoor(TETile[][] tiles, Random RAMDOM) {
+        boolean locked = false;
+        while (!locked) {
+            int x = RandomUtils.uniform(RAMDOM, 1, WIDTH - 1);
+            int y = RandomUtils.uniform(RAMDOM, 1, HEIGHT - 1);
+            if (tiles[x][y].equals(Tileset.WALL) &
+                    ((tiles[x][y + 1] == Tileset.FLOOR & tiles[x][y - 1] == Tileset.NOTHING) ||
+                    (tiles[x][y + 1] == Tileset.NOTHING & tiles[x][y - 1] == Tileset.FLOOR)) ||
+                    ((tiles[x + 1][y] == Tileset.FLOOR & tiles[x - 1][y] == Tileset.NOTHING) ||
+                    (tiles[x + 1][y] == Tileset.NOTHING & tiles[x - 1][y - 1] == Tileset.FLOOR))
+            ) {
+                tiles[x][y] = Tileset.LOCKED_DOOR;
+                locked = true;
+            }
+        }
+    }
 
     // place rooms
     private static void placeOneRooms(TETile[][] tiles, Random RAMDOM, ArrayList<Room> rooms, int spanningWidthLeft, int spanningWidthRight) {
@@ -100,12 +127,20 @@ public class WorldGenerator {
         // draw wall
         System.out.println("");
         for (int x = x1; x <= x2; x++) {
-            tiles[x][y1] = Tileset.WALL;
-            tiles[x][y2] = Tileset.WALL;
+            if (tiles[x][y1] != Tileset.FLOOR) {
+                tiles[x][y1] = Tileset.WALL;
+            }
+            if (tiles[x][y2] != Tileset.FLOOR) {
+                tiles[x][y2] = Tileset.WALL;
+            }
         }
         for (int y = y1; y >= y2; y--) {
-            tiles[x1][y] = Tileset.WALL;
-            tiles[x2][y] = Tileset.WALL;
+            if (tiles[x1][y] != Tileset.FLOOR) {
+                tiles[x1][y] = Tileset.WALL;
+            }
+            if (tiles[x2][y] != Tileset.FLOOR) {
+                tiles[x2][y] = Tileset.WALL;
+            }
         }
         // draw room
         for (int y = y1 - 1; y >= y2 + 1; y--) {
