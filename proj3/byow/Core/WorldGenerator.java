@@ -18,9 +18,9 @@ public class WorldGenerator {
     private static final int minWidth = 4; // should be more than 3 considering the wall lengths
     private static final int maxWidth = 20;
     private static final int minHeight = 4;
-    private static final int maxHeight = 15;
-    private static final int maxRoomNum = 18;
-    private static final int maxTry = 50; // maximum try to generate room, in case infinite loop to reach the room num
+    private static final int maxHeight = 10;
+    private static final int maxRoomNum = 30;
+    private static final int maxTry = 60; // maximum try to generate room, in case infinite loop to reach the room num
     private static final long SEED = 2873123;
     private static final Random RANDOM1 = new Random(SEED );
     private static final Random RANDOM2 = new Random(SEED );
@@ -38,8 +38,16 @@ public class WorldGenerator {
         }
         // generate the framework
         ArrayList<Room> rooms = new ArrayList<Room>();
+        // use a strategy, every step just generate random rooms within certain area
+        int span = maxWidth * 2;
+        int stepWidth = span / 2;
+        int step = WIDTH / stepWidth;
+        int iterNum = step - 1;
+
         for (int i = 0; i < maxTry; i++) {
-            placeOneRooms(tiles, RANDOM1, rooms);
+            int spanningWidthLeft = i * iterNum / maxTry * stepWidth;
+            int spanningWidthRight = i * iterNum / maxTry * stepWidth + span - 1;
+            placeOneRooms(tiles, RANDOM1, rooms, spanningWidthLeft, spanningWidthRight);
             if (rooms.size() == maxRoomNum) {
                 break;
             }
@@ -51,10 +59,10 @@ public class WorldGenerator {
 
 
     // place rooms
-    private static void placeOneRooms(TETile[][] tiles, Random RAMDOM, ArrayList<Room> rooms) {
+    private static void placeOneRooms(TETile[][] tiles, Random RAMDOM, ArrayList<Room> rooms, int spanningWidthLeft, int spanningWidthRight) {
         int w = RandomUtils.uniform(RAMDOM, minWidth, maxWidth + 1);
         int h = RandomUtils.uniform(RAMDOM, minHeight, maxHeight + 1);
-        int x1 = RandomUtils.uniform(RAMDOM, 0, WIDTH - w);
+        int x1 = RandomUtils.uniform(RAMDOM, spanningWidthLeft, spanningWidthRight - w);
         int y1 = RandomUtils.uniform(RAMDOM, h, HEIGHT);
         Room newRoom = new Room(new Point (x1, y1), w, h);
         boolean overlapped = false;
@@ -67,6 +75,7 @@ public class WorldGenerator {
         if (!overlapped) {
             createRoom(tiles, newRoom);
             Point newCenter = newRoom.center();
+            // draw hallways
             if (rooms.size() != 0) {
                 Point preCenter = rooms.get(rooms.size() - 1).center();
 
