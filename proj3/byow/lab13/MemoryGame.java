@@ -42,6 +42,7 @@ public class MemoryGame {
         StdDraw.setXscale(0, this.width);
         StdDraw.setYscale(0, this.height);
         StdDraw.clear(Color.BLACK);
+        StdDraw.setPenColor(Color.WHITE);
         StdDraw.enableDoubleBuffering();
         this.rand = new Random(seed);
         //TODO: Initialize random number generator
@@ -104,7 +105,9 @@ public class MemoryGame {
         gameOver = false;
         int round = 1;
         while (!gameOver) {
-            StdDraw.text(2, 2, String.format("Round: %d", round));
+            StdDraw.setPenColor(Color.WHITE);
+            StdDraw.line(2, 2, 38, 38);
+            StdDraw.text(6, 6, String.format("Round: %d", round));
             String letters = generateRandomString(round);
             flashSequence(letters);
             String typeString = solicitNCharsInput(round);
