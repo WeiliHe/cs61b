@@ -3,11 +3,13 @@ package byow.Core;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 
+import java.util.HashSet;
+
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
-    public static final int WIDTH = 80;
-    public static final int HEIGHT = 30;
+    public static final int WIDTH = 100;
+    public static final int HEIGHT = 50;
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
@@ -45,8 +47,30 @@ public class Engine {
         //
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
-
         TETile[][] finalWorldFrame = null;
+
+        String inputCap = input.toUpperCase();
+        String sliceInput;
+        int startIndex = 0;
+        int endIndex = 0;
+        // case 1, n1243s case
+        if (input.contains("N") || (input.contains("S"))) {
+            for (int i = 0; i < input.length(); i++) {
+                if (input.charAt(i) == 'S'){
+                    endIndex = i;
+                    break;
+                }
+            }
+            long seed = Long.valueOf(input.substring(startIndex + 1, endIndex));
+            finalWorldFrame = WorldGenerator.generate(seed, finalWorldFrame, WIDTH, HEIGHT);
+        }
         return finalWorldFrame;
+    }
+
+    public static void main(String args[]){
+        Engine tileEngine = new Engine();
+        tileEngine.ter.initialize(WIDTH, HEIGHT);
+        TETile[][] tiles = tileEngine.interactWithInputString("N12892S");
+        tileEngine.ter.renderFrame(tiles);
     }
 }

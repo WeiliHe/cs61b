@@ -3,6 +3,7 @@ package byow.Core;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
+import byow.lab12.HexWorld;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,24 +16,34 @@ import java.util.Random;
  * clean the wall that are adjacent to two hallways or two room. (up and down are both floors)
  */
 public class WorldGenerator {
-    private static final int WIDTH = 100; //map width
-    private static final int HEIGHT = 50; //map height
-    private static final int minWidth = 4; // should be more than 3 considering the wall lengths
-    private static final int maxWidth = 20;
-    private static final int minHeight = 4;
-    private static final int maxHeight = 10;
-    private static final int maxRoomNum = 30;
-    private static final int maxTry = 60; // maximum try to generate room, in case infinite loop to reach the room num
-    private static final long SEED = 2873123;
-    private static final Random RANDOM1 = new Random(SEED); // for rooms
-    private static final Random RANDOM2 = new Random(SEED); // for hallways
-    private static final Random RANDOM3 = new Random(SEED); // for locked door
+//    private static final int WIDTH = 100; //map width
+//    private static final int HEIGHT = 50; //map height
+//    private static final int minWidth = 4; // should be more than 3 considering the wall lengths
+//    private static final int maxWidth = 20;
+//    private static final int minHeight = 4;
+//    private static final int maxHeight = 10;
+//    private static final int maxRoomNum = 30;
+//    private static final int maxTry = 60; // maximum try to generate room, in case infinite loop to reach the room num
+//    private static final long SEED = 2873123;
+//    private static final Random RANDOM1 = new Random(SEED); // for rooms
+//    private static final Random RANDOM2 = new Random(SEED); // for hallways
+//    private static final Random RANDOM3 = new Random(SEED); // for locked door
 
 
-    public static void generate() {
-        TERenderer ter = new TERenderer();
-        ter.initialize(WIDTH, HEIGHT);
-        TETile[][] tiles = new TETile[WIDTH][HEIGHT];
+    public static TETile[][] generate(long SEED, TETile[][] tiles, int WIDTH, int HEIGHT) {
+        Random RANDOM1 = new Random(SEED); // for rooms
+        Random RANDOM2 = new Random(SEED); // for hallways
+        Random RANDOM3 = new Random(SEED); // for locked door
+        int minWidth = 4;
+        int maxWidth =  WIDTH / 5;
+        int minHeight = 4;
+        int maxHeight = HEIGHT / 5;
+        int maxRoomNum = (WIDTH * HEIGHT) / ((minWidth + maxWidth) * (minHeight + maxHeight) / 4);
+        int maxTry = 60;
+
+//        TERenderer ter = new TERenderer();
+//        ter.initialize(WIDTH, HEIGHT);
+        tiles = new TETile[WIDTH][HEIGHT];
         // initialize tiles
         for (int x = 0; x < WIDTH; x += 1) {
             for (int y = 0; y < HEIGHT; y += 1) {
@@ -50,15 +61,17 @@ public class WorldGenerator {
         for (int i = 0; i < maxTry; i++) {
             int spanningWidthLeft = i * iterNum / maxTry * stepWidth;
             int spanningWidthRight = i * iterNum / maxTry * stepWidth + span - 1;
-            placeOneRooms(tiles, RANDOM1, rooms, spanningWidthLeft, spanningWidthRight);
+            placeOneRooms(tiles, RANDOM1, RANDOM2, rooms, spanningWidthLeft, spanningWidthRight,
+                            minWidth, maxWidth, minHeight, maxHeight, HEIGHT);
             if (rooms.size() == maxRoomNum) {
                 break;
             }
         }
-        cleanWalls(tiles);
-        addLockedDoor(tiles, RANDOM3);
+        cleanWalls(tiles, WIDTH, HEIGHT);
+        addLockedDoor(tiles, RANDOM3, WIDTH, HEIGHT);
         System.out.println(rooms.size());
-        ter.renderFrame(tiles);
+//        ter.renderFrame(tiles);
+        return tiles;
     }
 
 
@@ -68,11 +81,11 @@ public class WorldGenerator {
     // 2. search in the rooms
     // 3. just search randomly
 
-    private static void addLockedDoor(TETile[][] tiles, Random RAMDOM) {
+    private static void addLockedDoor(TETile[][] tiles, Random RAMDOM3, int WIDTH, int HEIGHT) {
         boolean locked = false;
         while (!locked) {
-            int x = RandomUtils.uniform(RAMDOM, 1, WIDTH - 1);
-            int y = RandomUtils.uniform(RAMDOM, 1, HEIGHT - 1);
+            int x = RandomUtils.uniform(RAMDOM3, 1, WIDTH - 1);
+            int y = RandomUtils.uniform(RAMDOM3, 1, HEIGHT - 1);
             if (tiles[x][y].equals(Tileset.WALL) &
                     ((tiles[x][y + 1] == Tileset.FLOOR & tiles[x][y - 1] == Tileset.NOTHING) ||
                     (tiles[x][y + 1] == Tileset.NOTHING & tiles[x][y - 1] == Tileset.FLOOR)) ||
@@ -86,11 +99,12 @@ public class WorldGenerator {
     }
 
     // place rooms
-    private static void placeOneRooms(TETile[][] tiles, Random RAMDOM, ArrayList<Room> rooms, int spanningWidthLeft, int spanningWidthRight) {
-        int w = RandomUtils.uniform(RAMDOM, minWidth, maxWidth + 1);
-        int h = RandomUtils.uniform(RAMDOM, minHeight, maxHeight + 1);
-        int x1 = RandomUtils.uniform(RAMDOM, spanningWidthLeft, spanningWidthRight - w);
-        int y1 = RandomUtils.uniform(RAMDOM, h, HEIGHT);
+    private static void placeOneRooms(TETile[][] tiles, Random RAMDOM1, Random RANDOM2, ArrayList<Room> rooms, int spanningWidthLeft, int spanningWidthRight,
+                                      int minWidth, int maxWidth, int minHeight, int maxHeight, int HEIGHT) {
+        int w = RandomUtils.uniform(RAMDOM1, minWidth, maxWidth + 1);
+        int h = RandomUtils.uniform(RAMDOM1, minHeight, maxHeight + 1);
+        int x1 = RandomUtils.uniform(RAMDOM1, spanningWidthLeft, spanningWidthRight - w);
+        int y1 = RandomUtils.uniform(RAMDOM1, h, HEIGHT);
         Room newRoom = new Room(new Point (x1, y1), w, h);
         boolean overlapped = false;
         for (Room room: rooms) {
@@ -125,7 +139,7 @@ public class WorldGenerator {
         int x2 = room.lowerRightx();
         int y2 = room.lowerRighty();
         // draw wall
-        System.out.println("");
+//        System.out.println("");
         for (int x = x1; x <= x2; x++) {
             if (tiles[x][y1] != Tileset.FLOOR) {
                 tiles[x][y1] = Tileset.WALL;
@@ -217,7 +231,7 @@ public class WorldGenerator {
     }
 
     // clean the adjacent walls
-    private static void cleanWalls(TETile[][] tiles) {
+    private static void cleanWalls(TETile[][] tiles, int WIDTH, int HEIGHT) {
         for (int i = 0; i < 2; i++) {
             for (int x = 1; x < WIDTH - 1; x += 1) {
                 for (int y = 1; y < HEIGHT - 1; y += 1) {
@@ -231,6 +245,10 @@ public class WorldGenerator {
     }
 
     public static void main(String args[]){
-        WorldGenerator.generate();
+        long seed = 291832;
+        int WIDTH = 100;
+        int HEIGHT = 50;
+        TETile[][] finalWorldFrame = null;
+        finalWorldFrame = WorldGenerator.generate(seed, finalWorldFrame, WIDTH, HEIGHT);
     }
 }
