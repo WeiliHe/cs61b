@@ -2,20 +2,45 @@ package byow.Core;
 
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
+import edu.princeton.cs.introcs.StdDraw;
 
+import java.awt.*;
 import java.util.HashSet;
+import java.util.Random;
 
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
     public static final int WIDTH = 100;
     public static final int HEIGHT = 50;
+    public static final int START_WIDTH = 50; // these two are for the start menu
+    public static final int START_HEIGHT = 50;
+    public static final int TILE_SIZE = 16;
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
      * including inputs from the main menu.
      */
     public void interactWithKeyboard() {
+        renderMenu();
+        while (true) {
+            if (StdDraw.hasNextKeyTyped()) {
+                char c = StdDraw.nextKeyTyped();
+                switch (c) {
+                    case 'N':
+                        saveEditor(e);
+                        break;
+                    case 'L':
+                        System.exit(0);
+                        break;
+                    case 'Q':
+                        System.exit(0);
+                        break;
+                    default: e.addChar(c);
+                }
+            }
+            e.show();
+        }
     }
 
     /**
@@ -65,6 +90,23 @@ public class Engine {
             finalWorldFrame = WorldGenerator.generate(seed, finalWorldFrame, WIDTH, HEIGHT);
         }
         return finalWorldFrame;
+    }
+
+    // generating the start Menu
+    private void renderMenu() {
+        StdDraw.setCanvasSize(START_WIDTH * TILE_SIZE, START_HEIGHT * TILE_SIZE);
+        Font font = new Font("Monaco", Font.BOLD, 20);
+        StdDraw.setFont(font);
+        StdDraw.setXscale(0, START_WIDTH );
+        StdDraw.setYscale(0, START_HEIGHT );
+        StdDraw.clear(Color.BLACK);
+        StdDraw.setPenColor(Color.WHITE);
+        StdDraw.enableDoubleBuffering();
+        StdDraw.text((START_WIDTH + START_HEIGHT) / 2, START_HEIGHT * 2 / 3, "CS61B The Game");
+        StdDraw.text((START_WIDTH + START_HEIGHT) / 2, START_HEIGHT * 2 - 2, "New Game (N)");
+        StdDraw.text((START_WIDTH + START_HEIGHT) / 2, START_HEIGHT * 2, "Load Game (L)");
+        StdDraw.text((START_WIDTH + START_HEIGHT) / 2, START_HEIGHT * 2 , "Quit (N)");
+        StdDraw.show();
     }
 
     public static void main(String args[]){

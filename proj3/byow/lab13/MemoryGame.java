@@ -91,21 +91,19 @@ public class MemoryGame {
     }
 
     public void drawString(String s, int round) {
-//        Font font = new Font("Monaco", Font.BOLD, 20);
-//        StdDraw.setFont(font);
         drawFrame(round);
         if (!playerTurn) {
             sleep(300);
-        }
-//        Font letterFont = new Font("Monaco", Font.BOLD, 40);
-//            StdDraw.setFont(letterFont);
-        StdDraw.text(this.width / 2, this.height / 2, s);
-        StdDraw.show();
-        if (!playerTurn) {
+            StdDraw.text(this.width / 2, this.height / 2, s);
+            StdDraw.show();
             sleep(300);
             StdDraw.clear(Color.BLACK);
+            StdDraw.show();
         }
-        StdDraw.show();
+        if (!playerTurn) {
+            StdDraw.text(this.width / 2, this.height / 2, s);
+            StdDraw.show();
+        }
         //TODO: Take the string and display it in the center of the screen
         //TODO: If game is not over, diisplay relevant game information at the top of the screen
     }
