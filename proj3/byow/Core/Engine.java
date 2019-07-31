@@ -5,8 +5,10 @@ import byow.TileEngine.TETile;
 import edu.princeton.cs.introcs.StdDraw;
 
 import java.awt.*;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Engine {
     TERenderer ter = new TERenderer();
@@ -17,29 +19,108 @@ public class Engine {
     public static final int START_HEIGHT = 50;
     public static final int TILE_SIZE = 16;
 
+    // load the saving WorldGenerator
+    private static Interaction loadInteraction() {
+        File f = new File("./save_data");
+        if (f.exists()) {
+            try {
+                FileInputStream fs = new FileInputStream(f);
+                ObjectInputStream os = new ObjectInputStream(fs);
+                return (Interaction) os.readObject();
+            } catch (FileNotFoundException e) {
+                System.out.println("file not found");
+                System.exit(0);
+            } catch (IOException e) {
+                System.out.println(e);
+                System.exit(0);
+            } catch (ClassNotFoundException e) {
+                System.out.println("class not found");
+                System.exit(0);
+            }
+        }
+        /* In the case no Editor has been saved yet, we return a new one. */
+        System.exit(0);
+        return new Interaction();
+    }
+
+    // save the status
+    private static void saveInteraction(Interaction interact) {
+        File f = new File("./save_data");
+        try {
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            FileOutputStream fs = new FileOutputStream(f);
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+            os.writeObject(interact);
+        }  catch (FileNotFoundException e) {
+            System.out.println("file not found");
+            System.exit(0);
+        } catch (IOException e) {
+            System.out.println(e);
+            System.exit(0);
+        }
+    }
+
+
+
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
      * including inputs from the main menu.
      */
     public void interactWithKeyboard() {
         renderMenu();
-        while (true) {
-            if (StdDraw.hasNextKeyTyped()) {
-                char c = StdDraw.nextKeyTyped();
-                switch (c) {
-                    case 'N':
-                        saveEditor(e);
-                        break;
-                    case 'L':
-                        System.exit(0);
-                        break;
-                    case 'Q':
-                        System.exit(0);
-                        break;
-                    default: e.addChar(c);
-                }
+        Interaction interact = null;
+        // open from the menu
+        boolean wait = true;
+        while (wait) {
+            if (!StdDraw.hasNextKeyTyped()) {
+                continue;
+              }
+            String c = ("" + StdDraw.nextKeyTyped()).toUpperCase();
+            System.out.println(c);
+            switch (c) {
+                case "N":
+                    // get the seed
+                    Scanner input = new Scanner(System.in);
+                    long seed = input.nextLong();
+                    input.close();
+                    System.out.println("here");
+                    TETile[][] WorldFrame = null;
+                    WorldFrame = WorldGenerator.generate(seed, WorldFrame, WIDTH, HEIGHT);
+                    interact = new Interaction(WorldFrame, seed);
+                    wait = false;
+                    break;
+                case "L":
+                    interact = loadInteraction();
+                    break;
+                case "Q":
+                    System.exit(0);
+                    break;
+                default:
+                    System.exit(0);
+                    break;
             }
-            e.show();
+            System.out.println(wait);
+        }
+        // start to play
+        System.out.println("here");
+        char preKey = ',';
+        while (true) {
+            if (!StdDraw.hasNextKeyTyped()) {
+                continue;
+            }
+            char key = StdDraw.nextKeyTyped();
+            preKey = key;
+            // if a user enter ':' then 'Q', then save and exit the game
+            if (("" + preKey + key).equals(":Q")) {
+                saveInteraction(interact);
+                System.exit(0);
+            }
+            // in case the player enter something else
+            if ("WSAD".contains(("" + key))) {
+                interact.move(key);
+            }
         }
     }
 
@@ -102,10 +183,10 @@ public class Engine {
         StdDraw.clear(Color.BLACK);
         StdDraw.setPenColor(Color.WHITE);
         StdDraw.enableDoubleBuffering();
-        StdDraw.text((START_WIDTH + START_HEIGHT) / 2, START_HEIGHT * 2 / 3, "CS61B The Game");
-        StdDraw.text((START_WIDTH + START_HEIGHT) / 2, START_HEIGHT * 2 - 2, "New Game (N)");
-        StdDraw.text((START_WIDTH + START_HEIGHT) / 2, START_HEIGHT * 2, "Load Game (L)");
-        StdDraw.text((START_WIDTH + START_HEIGHT) / 2, START_HEIGHT * 2 , "Quit (N)");
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT * 2 / 3, "CS61B The Game");
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2 + 2, "New Game (N)");
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2, "Load Game (L)");
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2 - 2 , "Quit (Q)");
         StdDraw.show();
     }
 

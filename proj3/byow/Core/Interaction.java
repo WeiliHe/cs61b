@@ -56,6 +56,7 @@ public class Interaction {
                 player = true;
                 playerLocation = new Point(x, y);
             }
+            System.out.println(player);
         }
     }
 
