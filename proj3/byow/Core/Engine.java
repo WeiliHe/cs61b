@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
-    public static final int WIDTH = 100;
-    public static final int HEIGHT = 50;
+    public static final int WIDTH = 80;
+    public static final int HEIGHT = 40;
     public static final int START_WIDTH = 50; // these two are for the start menu
     public static final int START_HEIGHT = 50;
     public static final int TILE_SIZE = 16;
@@ -63,6 +63,63 @@ public class Engine {
     }
 
 
+    // generating the start Menu
+    private void renderTypeString() {
+        StdDraw.setCanvasSize(START_WIDTH * TILE_SIZE, START_HEIGHT * TILE_SIZE);
+        Font font = new Font("Monaco", Font.BOLD, 20);
+        StdDraw.setFont(font);
+        StdDraw.setXscale(0, START_WIDTH );
+        StdDraw.setYscale(0, START_HEIGHT );
+        StdDraw.clear(Color.BLACK);
+        StdDraw.setPenColor(Color.WHITE);
+        StdDraw.enableDoubleBuffering();
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2, "Typed the seed and end with letter S");
+        StdDraw.show();
+    }
+
+    private void renderMenu() {
+        StdDraw.setCanvasSize(START_WIDTH * TILE_SIZE, START_HEIGHT * TILE_SIZE);
+        Font font = new Font("Monaco", Font.BOLD, 20);
+        StdDraw.setFont(font);
+        StdDraw.setXscale(0, START_WIDTH );
+        StdDraw.setYscale(0, START_HEIGHT );
+        StdDraw.clear(Color.BLACK);
+        StdDraw.setPenColor(Color.WHITE);
+        StdDraw.enableDoubleBuffering();
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT * 2 / 3, "CS61B The Game");
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2 + 2, "New Game (N)");
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2, "Load Game (L)");
+        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2 - 2 , "Quit (Q)");
+        StdDraw.show();
+    }
+
+    /**
+     *
+     * @return the seed after typed N
+     */
+    private long getSeed() {
+        try {
+            boolean seedTyped = false;
+            String input = "";
+            while (!seedTyped) {
+                if (!StdDraw.hasNextKeyTyped()) {
+                    continue;
+                }
+                char key = StdDraw.nextKeyTyped();
+                input += key;
+                if (key == 'S' | key == 's') {
+                    seedTyped = true;
+                }
+            }
+            int seed = Integer.parseInt(input.substring(0, input.length() - 1));
+            return (long) seed;
+        }
+        catch (NumberFormatException e) {
+            System.out.println("You typed a wrong format of seed");
+            throw e;
+        }
+    }
+
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
@@ -82,10 +139,8 @@ public class Engine {
             switch (c) {
                 case "N":
                     // get the seed
-                    Scanner input = new Scanner(System.in);
-                    long seed = input.nextLong();
-                    input.close();
-                    System.out.println("here");
+                    renderTypeString();
+                    long seed = getSeed();
                     TETile[][] WorldFrame = null;
                     WorldFrame = WorldGenerator.generate(seed, WorldFrame, WIDTH, HEIGHT);
                     interact = new Interaction(WorldFrame, seed);
@@ -93,6 +148,7 @@ public class Engine {
                     break;
                 case "L":
                     interact = loadInteraction();
+                    wait = false;
                     break;
                 case "Q":
                     System.exit(0);
@@ -101,26 +157,25 @@ public class Engine {
                     System.exit(0);
                     break;
             }
-            System.out.println(wait);
         }
         // start to play
-        System.out.println("here");
+        interact.initialize();
         char preKey = ',';
         while (true) {
-            if (!StdDraw.hasNextKeyTyped()) {
-                continue;
+            if (StdDraw.hasNextKeyTyped()) {
+                char key = StdDraw.nextKeyTyped();
+                // if a user enter ':' then 'Q', then save and exit the game
+                if (("" + preKey + key).toUpperCase().equals(":Q")) {
+                    saveInteraction(interact);
+                    System.exit(0);
+                }
+                // in case the player enter something else
+                if ("WSAD".contains(("" + key).toUpperCase())) {
+                    interact.move(("" + key).toUpperCase());
+                }
+                preKey = key;
             }
-            char key = StdDraw.nextKeyTyped();
-            preKey = key;
-            // if a user enter ':' then 'Q', then save and exit the game
-            if (("" + preKey + key).equals(":Q")) {
-                saveInteraction(interact);
-                System.exit(0);
-            }
-            // in case the player enter something else
-            if ("WSAD".contains(("" + key))) {
-                interact.move(key);
-            }
+            interact.show();
         }
     }
 
@@ -171,23 +226,6 @@ public class Engine {
             finalWorldFrame = WorldGenerator.generate(seed, finalWorldFrame, WIDTH, HEIGHT);
         }
         return finalWorldFrame;
-    }
-
-    // generating the start Menu
-    private void renderMenu() {
-        StdDraw.setCanvasSize(START_WIDTH * TILE_SIZE, START_HEIGHT * TILE_SIZE);
-        Font font = new Font("Monaco", Font.BOLD, 20);
-        StdDraw.setFont(font);
-        StdDraw.setXscale(0, START_WIDTH );
-        StdDraw.setYscale(0, START_HEIGHT );
-        StdDraw.clear(Color.BLACK);
-        StdDraw.setPenColor(Color.WHITE);
-        StdDraw.enableDoubleBuffering();
-        StdDraw.text(START_WIDTH / 2, START_HEIGHT * 2 / 3, "CS61B The Game");
-        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2 + 2, "New Game (N)");
-        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2, "Load Game (L)");
-        StdDraw.text(START_WIDTH / 2, START_HEIGHT / 2 - 2 , "Quit (Q)");
-        StdDraw.show();
     }
 
     public static void main(String args[]){

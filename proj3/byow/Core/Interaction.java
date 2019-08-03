@@ -5,9 +5,10 @@ import byow.TileEngine.Tileset;
 import edu.princeton.cs.introcs.StdDraw;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Interaction {
+public class Interaction implements Serializable {
     private static final int TILE_SIZE = 16;
     private TETile[][] tiles;
     private Point playerLocation;
@@ -51,42 +52,43 @@ public class Interaction {
         while (!player) {
             x = RandomUtils.uniform(RANDOM, 1, WIDTH - 1);
             y = RandomUtils.uniform(RANDOM, 1, HEIGHT - 1);
-            if (tiles[x][y].equals(Tileset.FLOOR)) {
+            if (tiles[x][y].description().equals(Tileset.FLOOR.description())) {
                 tiles[x][y] = Tileset.PLAYER;
                 player = true;
                 playerLocation = new Point(x, y);
             }
-            System.out.println(player);
         }
     }
 
     // move the player according to the input
-    public void move(char c) {
+    public void move(String c) {
         int newX = 0;
         int newY = 0;
         int oldX = playerLocation.x();
         int oldY = playerLocation.y();
         switch (c) {
-            case 'W':
+            case "W":
                 newX = playerLocation.x();
                 newY = playerLocation.y() + 1;
                 break;
-            case 'S':
+            case "S":
                 newX = playerLocation.x();
                 newY = playerLocation.y() - 1;
                 break;
-            case 'A':
+            case "A":
                 newX = playerLocation.x() - 1;
                 newY = playerLocation.y();
                 break;
-            case 'D':
+            case "D":
                 newX = playerLocation.x() + 1;
                 newY = playerLocation.y();
                 break;
         }
+//        System.out.println(tiles[newX][newY]);
+//        System.out.println(Tileset.FLOOR);
         // update the player location if the new location is not a wall, ow stay
         // this would change if new features are added to this game, such as the lockedDoor, trap, new world
-        if (tiles[newX][newY].equals(Tileset.FLOOR)) {
+        if (tiles[newX][newY].description().equals(Tileset.FLOOR.description())) {
             playerLocation.setX(newX);
             playerLocation.setY(newY);
             tiles[newX][newY] = Tileset.PLAYER;
@@ -95,17 +97,17 @@ public class Interaction {
     }
 
     // display the info on the screen
-    public void show(TETile[][] world) {
-        int numXTiles = world.length;
-        int numYTiles = world[0].length;
+    public void show() {
+        int numXTiles = tiles.length;
+        int numYTiles = tiles[0].length;
         StdDraw.clear(new Color(0, 0, 0));
         for (int x = 0; x < numXTiles; x += 1) {
             for (int y = 0; y < numYTiles; y += 1) {
-                if (world[x][y] == null) {
+                if (tiles[x][y] == null) {
                     throw new IllegalArgumentException("Tile at position x=" + x + ", y=" + y
                             + " is null.");
                 }
-                world[x][y].draw(x + xOffset, y + yOffset);
+                tiles[x][y].draw(x + xOffset, y + yOffset);
             }
         }
         StdDraw.show();

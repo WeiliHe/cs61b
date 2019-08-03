@@ -37,7 +37,6 @@ public class Editor implements Serializable {
     public void show() {
         int midWidth = width / 2;
         int midHeight = height / 2;
-
         StdDraw.clear(Color.BLACK);
         StdDraw.setPenColor(Color.WHITE);
         StdDraw.text(midWidth, midHeight, words);
