@@ -62,8 +62,7 @@ public class Engine {
         }
     }
 
-
-    // generating the start Menu
+    // generating the page for user to enter the seed
     private void renderTypeString() {
         StdDraw.setCanvasSize(START_WIDTH * TILE_SIZE, START_HEIGHT * TILE_SIZE);
         Font font = new Font("Monaco", Font.BOLD, 20);
@@ -77,6 +76,7 @@ public class Engine {
         StdDraw.show();
     }
 
+    // generating the start Menu
     private void renderMenu() {
         StdDraw.setCanvasSize(START_WIDTH * TILE_SIZE, START_HEIGHT * TILE_SIZE);
         Font font = new Font("Monaco", Font.BOLD, 20);
@@ -208,24 +208,55 @@ public class Engine {
         //
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
-        TETile[][] finalWorldFrame = null;
-
-        String inputCap = input.toUpperCase();
-        String sliceInput;
-        int startIndex = 0;
-        int endIndex = 0;
-        // case 1, n1243s case
-        if (input.contains("N") || (input.contains("S"))) {
-            for (int i = 0; i < input.length(); i++) {
-                if (input.charAt(i) == 'S'){
-                    endIndex = i;
-                    break;
+        
+        TETile[][] WorldFrame = null;
+        Interaction interact = null;
+        input = input.toUpperCase();
+        char firstLetter = input.charAt(0);
+        int startIndex = 1;
+        // get the seed or load the game
+        switch (firstLetter) {
+            case 'N':
+                // get the seed
+                int indexS = 0;
+                for (int i = startIndex; i < input.length(); i++) {
+                    if (input.charAt(i) == 'S'){
+                        indexS = i;
+                        break;
+                    }
                 }
-            }
-            long seed = Long.valueOf(input.substring(startIndex + 1, endIndex));
-            finalWorldFrame = WorldGenerator.generate(seed, finalWorldFrame, WIDTH, HEIGHT);
+                startIndex = 1;
+                long seed = Long.valueOf(input.substring(startIndex, indexS));
+                WorldFrame = WorldGenerator.generate(seed, WorldFrame, WIDTH, HEIGHT);
+                interact = new Interaction(WorldFrame, seed);
+                startIndex = indexS + 1;
+                break;
+            case 'L':
+                interact = loadInteraction();
+                startIndex = 1;
+                break;
+            default:
+                System.exit(0);
+                break;
         }
-        return finalWorldFrame;
+        System.out.println("here");
+        // start the interaction
+        interact.initialize();
+        char preKey = ',';
+        for (int i = startIndex; i < input.length(); i++) {
+            char key = input.charAt(i);
+            if (("" + preKey + key).toUpperCase().equals(":Q")) {
+                saveInteraction(interact);
+                System.exit(0);
+                return interact.getTiles();
+            }
+            if ("WSAD".contains(("" + key).toUpperCase())) {
+                interact.move(("" + key).toUpperCase());
+            }
+            preKey = key;
+            interact.show();
+        }
+        return interact.getTiles();
     }
 
     public static void main(String args[]){
