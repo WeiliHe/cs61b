@@ -3,6 +3,7 @@ package byow.TileEngine;
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 import java.lang.*;
 
@@ -190,6 +191,11 @@ public class TETile implements Serializable {
         }
 
         return copy;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.description());
     }
 //    why this one is not working?
     public boolean equals(TETile tile) {

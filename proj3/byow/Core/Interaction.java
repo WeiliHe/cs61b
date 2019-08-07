@@ -52,7 +52,7 @@ public class Interaction implements Serializable {
         while (!player) {
             x = RandomUtils.uniform(RANDOM, 1, WIDTH - 1);
             y = RandomUtils.uniform(RANDOM, 1, HEIGHT - 1);
-            if (tiles[x][y].description().equals(Tileset.FLOOR.description())) {
+            if (tiles[x][y].equals(Tileset.FLOOR)) {
                 tiles[x][y] = Tileset.PLAYER;
                 player = true;
                 playerLocation = new Point(x, y);
@@ -88,7 +88,7 @@ public class Interaction implements Serializable {
 //        System.out.println(Tileset.FLOOR);
         // update the player location if the new location is not a wall, ow stay
         // this would change if new features are added to this game, such as the lockedDoor, trap, new world
-        if (tiles[newX][newY].description().equals(Tileset.FLOOR.description())) {
+        if (tiles[newX][newY].equals(Tileset.FLOOR)) {
             playerLocation.setX(newX);
             playerLocation.setY(newY);
             tiles[newX][newY] = Tileset.PLAYER;
